@@ -10,15 +10,15 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
-class MainFormType extends AbstractType
+class EditFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom', TextType::class)
             ->add('urlFile', VichFileType::class, [
-                'required' => true,
-                'allow_delete' => true,
+                'required' => false,
+                'allow_delete' => false,
                 'download_uri' => false,
                 'label' => 'Selectionner une photo'])
             ->add('categorie', ChoiceType::class, [

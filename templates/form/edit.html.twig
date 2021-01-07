@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello Form!{% endblock %}
+{% block title %}Hello Edit Form!{% endblock %}
 
 {% block body %}
 {{ form_start(form) }}
 
 {{ form_widget(form) }}
 
-<button class="btn">{{ button_label|default('Add a image') }}</button>
+<button class="btn">{{ button_label|default('Modifier') }}</button>
 
 {{ form_end(form) }}
 
