@@ -30,7 +30,7 @@ class Image
     private string $nom;
 
     /**
-     * @ORM\Column(type="string|null", length=255)
+     * @ORM\Column(type="string", length=255)
      * @var string|null
      */
     private $url;
