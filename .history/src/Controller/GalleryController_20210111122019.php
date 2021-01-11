@@ -39,7 +39,7 @@ class GalleryController extends AbstractController
      */
     public function showImage(Image $image, string $categorie): Response
     {
-        return $this->render('gallery/showImage.html.twig', [
+        return $this->render('gallery/showImg.html.twig', [
             'categorie' => $categorie,
             'image' => $image,
         ]);

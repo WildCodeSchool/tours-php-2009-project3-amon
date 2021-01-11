@@ -35,11 +35,11 @@ class GalleryController extends AbstractController
 
     /**
      * @Route("/gallerie-design-metallique/{categorie}/{id}",
-     *          name="gallery_metallicDesign_category_showImage", methods={"GET"})
+     *          name="gallery_metallicDesign_category_showImg", methods={"GET"})
      */
-    public function showImage(Image $image, string $categorie): Response
+    public function showImg(Image $image, string $categorie): Response
     {
-        return $this->render('gallery/showImage.html.twig', [
+        return $this->render('gallery/showImg.html.twig', [
             'categorie' => $categorie,
             'image' => $image,
         ]);
@@ -47,7 +47,7 @@ class GalleryController extends AbstractController
 
     /**
      * @Route("/gallerie-design-metallique/{categorie}/{id}/edit",
-     *      name="gallery_metallicDesign_category_showImage_edit", methods={"GET","POST"})
+     *      name="gallery_metallicDesign_category_showImg_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Image $image, EntityManagerInterface $entityManager): Response
     {
