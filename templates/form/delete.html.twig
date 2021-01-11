@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('gallery_metallicDesign_category_showImg_delete', {'categorie':image.categorie, 'id': image.id}) }}" onsubmit="return confirm('Voulez vous supprimer cette image ?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ image.id) }}">
+    <button class="btn">Supprimer</button>
+</form>
