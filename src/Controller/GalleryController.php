@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Image;
 use App\Repository\ImageRepository;
 use App\Form\EditFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class GalleryController extends AbstractController
 {
@@ -28,26 +29,25 @@ class GalleryController extends AbstractController
     public function showImagesByCategorie(string $categorie, ImageRepository $imageRepository): Response
     {
         $images = $imageRepository->findBy([
-            'categorie' => $categorie
+            'categorie' => $categorie,
         ]);
         return $this->render('gallery/metallicDesign.html.twig', ['images' => $images]);
     }
 
     /**
-     * @Route("/gallerie-design-metallique/{categorie}/{id}",
-     *          name="gallery_metallicDesign_category_showImage", methods={"GET"})
+     * @Route("/gallerie-design-metallique/image/{id}",
+     *          name="gallery_metallicDesign_showImage", methods={"GET"})
      */
-    public function showImage(Image $image, string $categorie): Response
+    public function showImage(Image $image): Response
     {
         return $this->render('gallery/showImage.html.twig', [
-            'categorie' => $categorie,
             'image' => $image,
         ]);
     }
 
     /**
-     * @Route("/gallerie-design-metallique/{categorie}/{id}/edit",
-     *      name="gallery_metallicDesign_category_showImage_edit", methods={"GET","POST"})
+     * @Route("/gallerie-design-metallique/image/{id}/edit",
+     *      name="gallery_metallicDesign_showImage_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Image $image, EntityManagerInterface $entityManager): Response
     {

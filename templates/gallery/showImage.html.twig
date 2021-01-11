@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-var_dump($image);
-die;
     <h1>Hello {{ image.nom }}</h1>
     <img src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.nom }} poster">
-    <button><a href="{{ path('gallery_metallicDesign_category_showImage_edit',  {'categorie': image.categorie, 'id': image.id}) }}">Modifier</a></button>
+    <button><a href="{{ path('gallery_metallicDesign_showImage_edit',  {'id': image.id}) }}">Modifier</a></button>
 
     {{ include('form/delete.html.twig') }}
 {% endblock %}

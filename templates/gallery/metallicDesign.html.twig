@@ -37,7 +37,7 @@
  {% for image in images %}
  {{ image.nom }} <br>
  {{ image.categorie }}<br>
- <a href="{{path('gallery_metallicDesign_category_showImage', {'categorie': image.categorie,
+ <a href="{{path('gallery_metallicDesign_showImage', {
     'id': image.id}) }}"><img src="{{ vich_uploader_asset(image, 'urlFile') }}"
     alt="{{ image.nom }} poster"><br>
  
