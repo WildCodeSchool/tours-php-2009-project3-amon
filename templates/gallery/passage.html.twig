@@ -16,7 +16,7 @@
         <a href="#" class="sn-link" id="closebtn">&times;</a>
         <li class="sn-button"><a href="{{path('passage_gallery_category', {'categorie': 'bibliotheques'}) }}" class="sn-link">Bibliothèques</a></li>
         <li class="sn-button"><a href="{{path('passage_gallery_category', {'categorie': 'miroirs'}) }}" class="sn-link">Miroirs</a></li>
-        <li class="sn-button"><a href="{{path('passage_gallery') }}" class="sn-link" id="all-categories">Toutes</a></li>
+        <li class="sn-button last"><a href="{{path('passage_gallery') }}" class="sn-link" id="all-categories">Toutes</a></li>
     </ul>
 </nav>
 
@@ -24,7 +24,7 @@
     <h1 id="gallery-title">{{ categorie|capitalize }}</h1>
     {% for image in images %}
     <div class="image-container">
-        <img id="{{ image.id }}" class="gallery-img" src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.texteAlternatif}}">
+        <img id="{{ image.id }}" class="gallery-img" src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.texteAlternatif}}" loading="lazy">
         <div class="button-container">
             {% if app.user %}
             {{ include('form/_deletePassageImage.html.twig') }}

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Image;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -22,6 +23,12 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     * min = 2,
+     * max = 255,
+     * minMessage = "Le titre doit faire au minimum {{ limit }} caractères.",
+     * maxMessage = "Le titre ne doit pas dépasser {{ limit }} caractères."
+     * )
      */
     private string $titre;
 

@@ -30,7 +30,7 @@
 					{% for image in article.image %}
 						<div class="article-image">
 							<a href="{{ vich_uploader_asset(image, 'urlFile') }}">
-              				<img class="actuality-img" src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.texteAlternatif }}">
+              				<img class="actuality-img" src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.texteAlternatif }}" loading="lazy">
               				</a>
 						</div>
 					{% endfor %}

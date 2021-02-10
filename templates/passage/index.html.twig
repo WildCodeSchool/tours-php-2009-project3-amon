@@ -26,8 +26,8 @@
     </section>
     <section class="library">
         <div>
-            <img class="images-passage" src="{{ asset('build/images/passages-secrets/ps-4.jpg') }}" alt="Photo bibliothèque">
-            <img class="images-passage1 secret" src="{{ asset('build/images/passages-secrets/ps-14.jpg') }}" alt="Photo bibliothèque">
+            <img class="images-passage" src="{{ asset('build/images/passages-secrets/ps-4.jpg') }}" alt="Photo bibliothèque" loading="lazy">
+            <img class="images-passage1 secret" src="{{ asset('build/images/passages-secrets/ps-14.jpg') }}" alt="Photo bibliothèque" loading="lazy">
         </div>
         <div>
             <h2 class="passage-subtitle">La Bibliothèque</h1>
@@ -46,9 +46,9 @@
         
         <a href="{{path('passage_gallery_category', {'categorie': 'bibliothèques'}) }}"><div class="passage-miniature">
                 <p class="galery-title" >Galerie</p>
-                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-5.jpg') }}" alt="Photo bibliothèque">
-                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-2.jpg') }}" alt="Photo bibliothèque">
-                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-6.jpg') }}" alt="Photo bibliothèque">
+                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-5.jpg') }}" alt="Photo bibliothèque" loading="lazy">
+                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-2.jpg') }}" alt="Photo bibliothèque" loading="lazy">
+                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-6.jpg') }}" alt="Photo bibliothèque" loading="lazy">
         </div></a>
     </section>
     <section class="mirror">
@@ -58,40 +58,31 @@
                 est le miroir motorisé. Le mécanisme étant invisible, il n'y a aucune possibilité d'imaginer son usage. <br><br>
                 La cache d'arme est une solution esthétique et pratique afin de dissimuler des armes d'invités non 
                 désirés, mais aussi et surtout des enfants. <br><br>
-                Avec le porte fusil ainsi que les coffres forts intégrés pour le rangement des munitions, 
+                Avec le porte-fusil ainsi que les coffres-forts intégrés pour le rangement des munitions, 
                 vos armes à feu seront en sécurité.
             </p>
         </div>
         <div>
-            <img class="images-passage mirror-image" src="{{ asset('build/images/passages-secrets/ps-7.jpg') }}" alt="Photo bibliothèque">
-            <img class="images-passage secret2" src="{{ asset('build/images/passages-secrets/ps-8.jpg') }}" alt="Photo bibliothèque">
+            <img class="images-passage mirror-image" src="{{ asset('build/images/passages-secrets/ps-7.jpg') }}" alt="Photo bibliothèque" loading="lazy">
+            <img class="images-passage secret2" src="{{ asset('build/images/passages-secrets/ps-8.jpg') }}" alt="Photo bibliothèque" loading="lazy">
         </div>
         <a href="{{path('passage_gallery_category', {'categorie': 'miroirs'}) }}"><div class="passage-miniature miniature2">
                 <p class="galery-title" >Galerie</p>
-                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-9.jpg') }}" alt="Photo bibliothèque">
-                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-10.jpg') }}" alt="Photo bibliothèque">
-                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-12.jpg') }}" alt="Photo bibliothèque">
+                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-9.jpg') }}" alt="Photo bibliothèque" loading="lazy">
+                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-10.jpg') }}" alt="Photo bibliothèque" loading="lazy">
+                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-12.jpg') }}" alt="Photo bibliothèque" loading="lazy">
         </div></a>
     </section>
     <section class="tailor-made">
-        <div>
-            <img class="images-passage" src="{{ asset('build/images/passages-secrets/ps-15.jpg') }}" alt="Photo bibliothèque">
-            <img class="images-passage secret" src="{{ asset('build/images/passages-secrets/ps-17.jpg') }}" alt="Photo bibliothèque">
-        </div>
-        <div>
-            <h1 class="passage-subtitle">Pièces sur mesure</h1>
-            <p class="passage-description">La réalisation et la conception de passages secrets ne s'arrête pas
+            <h1 class="tailor-made-passage-subtitle">Pièces sur mesure</h1>
+            <p class="tailor-made-description">La réalisation et la conception de passages secrets ne s'arrêtent pas
                 aux portes dissimulées ou cloisons ouvrantes. Nous réalisons tous les projets proposés par les clients
-                en fonction de l'endroit et de l'envie de celui-ci. <br><br>
+                en fonction de l'endroit et des envies de ceux-ci. <br><br>
                 L'innovation et l'envie de réaliser des ouvrages hors du commun sont les moteurs de l'entreprise.
                 Nous analyserons toute demande faite en ce sens.
             </p>
-        </div>
-    <div class="passage-miniature no-hover">
-                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-18.jpg') }}" alt="Photo bibliothèque">
-                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-16.jpg') }}" alt="Photo bibliothèque">
-                <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-19.jpg') }}" alt="Photo bibliothèque">
-        </div></a>
+            <img class="tailor-made-image-big" src="{{ asset('build/images/passages-secrets/ps-20.png') }}" alt="Mash-up de plans" loading="lazy">
+            <img class="tailor-made-image-small" src="{{asset('build/images/passages-secrets/ps-21.png') }}" alt="Mash-up de plans" loading="lazy">
     </section>
     
 {% endblock %}

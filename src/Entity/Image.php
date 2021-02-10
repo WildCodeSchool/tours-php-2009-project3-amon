@@ -10,6 +10,7 @@ use App\Entity\Article;
 use DateTime;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
@@ -26,6 +27,12 @@ class Image
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     * min = 2,
+     * max = 255,
+     * minMessage = "Le nom doit faire au minimum {{ limit }} caractères.",
+     * maxMessage = "Le nom ne doit pas dépasser {{ limit }} caractères."
+     * )
      */
     private string $nom;
 
@@ -48,6 +55,12 @@ class Image
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     * min = 2,
+     * max = 255,
+     * minMessage = "La description doit faire au minimum {{ limit }} caractères.",
+     * maxMessage = "La description ne doit pas dépasser {{ limit }} caractères."
+     * )
      */
     private string $texteAlternatif;
 

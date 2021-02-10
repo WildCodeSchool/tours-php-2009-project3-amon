@@ -9,15 +9,15 @@
     text-decoration: var(--main-color) underline;
 }
 .passage-intro {
-    margin: 3% 6% 5% 6%;
+    margin: 3% 6% 8% 6%;
 }
 .intro{
     font-size: 1.3vw;
-    text-align: center;
+    text-align: justify;
 }
 
 /* -- Sections Library, Mirror, Tailor-Made -- */
-.library, .tailor-made{
+.library {
     display: grid;
     grid-template-columns: 35% 65%;
     grid-template-rows: repeat(150px, auto);
@@ -30,18 +30,39 @@
     margin: 0 5% 8% 5%;
 }
 
+.tailor-made {
+    margin: 0 5% 8% 5%;
+}
+
 /* -- Sections texts -- */
 .passage-subtitle{
     margin-bottom: 2%;
     font-size: 1.8vw;
     margin-top: -20px;
 }
-.passage-subtitle::first-letter {
-    font-size: 2.5vw;
+.tailor-made-passage-subtitle {
+    font-size: 1.8vw;
+    margin-top: -20px;
+    text-align: center;
+    margin-bottom: 0;
+    position: relative;
+    top: 2rem;
+}
+.tailor-made-description {
+    position: relative;
+    left:35%;
+    width: 35%;
+    top: 9rem;
+    margin: 0;
+    font-size: 1.2vw;
+    text-align: justify;
+}
+.passage-subtitle::first-letter, .tailor-made-passage-subtitle::first-letter {
+    font-size: 1.5em;
     color: var(--button-color);
 }
 .passage-description{
-    font-size: 1.1vw;
+    font-size: 1.2vw;
     text-align: justify;
 }
 
@@ -97,9 +118,16 @@
     -webkit-transform: scale(1.1); /* Safari 3-8 */
     transform: scale(1.1); 
 }
-.no-hover:hover {
-    transform: none;
+
+.tailor-made-image-big {
+    width: 100%;
+    position: relative;
+    top: -150px;
 }
+.tailor-made-image-small {
+    display: none;
+}
+
 /* Title in miniature */
 .galery-title {
     font-size: 3vw;
@@ -148,6 +176,39 @@
         -ms-transform: scale(1); /* IE 9 */
         -webkit-transform: scale(1); /* Safari 3-8 */
         transform: scale(1);
+    }
+    .tailor-made-description {
+        top: 5rem;
+        margin: 0;
+        font-size: 1.1em;
+        text-align: justify;
+    }
+    .tailor-made-passage-subtitle {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .tailor-made-passage-subtitle{
+        position: unset;
+        margin-bottom: 2%;
+        margin-top: -20px;
+    }
+    .tailor-made-description {
+        position: unset;
+        width: 100%;
+        margin: 0;
+        font-size: 1.1em;
+        text-align: justify;
+    }
+    .tailor-made-image-big {
+        display: none;
+    }
+    .tailor-made-image-small {
+        display: block;
+        position: unset;
+        margin: 3% auto;
+        width: 100%;
     }
 }
 

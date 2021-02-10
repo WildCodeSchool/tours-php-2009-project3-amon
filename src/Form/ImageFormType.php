@@ -44,8 +44,7 @@ class ImageFormType extends AbstractType
                     'Trappes vitrées' => 'Trappes vitrées',
                     'Verrière' => 'Verrières',
                     'Bibliothèques' => 'Bibliothèques',
-                    'Miroirs' => 'Miroirs',
-                    'Sur-mesure' => 'Sur-mesure'
+                    'Miroirs' => 'Miroirs'
                 ]
             ])
             ->add('texte_alternatif', TextareaType::class, [
