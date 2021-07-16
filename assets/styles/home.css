@@ -131,10 +131,10 @@ a {
 #societe:before {
     content: '';
     display: block;
-    position: relative; 
-    width: 0; 
-    height: 5em; 
-    margin-top: -5em 
+    position: relative;
+    width: 0;
+    height: 5em;
+    margin-top: -5em
 }
 .container_home-description {
     display: flex;
@@ -161,14 +161,14 @@ a {
 }
 
 .text-desc {
-    font-size: 1em;
+    font-size: 1.15em;
 }
 
 
-#button-up {
+#container_button-up {
     position: -webkit-sticky;
     position: sticky;
-    /*keep it full buttom of the screen when scrolling so: viewport size less button size
+    /*keep it full bottom of the screen when scrolling so: viewport size less button size
     (padding up and down, height, plus margin to viewport border)*/
     top: calc(100% - 1rem - 38px - 2.5%);
     /*keep it in the middle of the screen so: viewport width less button size
