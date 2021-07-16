@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Entity\Image;
 use App\Form\ImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -42,5 +43,12 @@ class ArticleCrudController extends AbstractCrudController
                 ->setEntryType(ImageType::class)
                 ->setRequired(true),
             ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return parent::configureCrud($crud)
+            ->setEntityLabelInSingular('Article')
+            ->setEntityLabelInPlural('Articles');
     }
 }

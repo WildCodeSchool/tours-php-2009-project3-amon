@@ -34,6 +34,21 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('passwordCheck', PasswordType::class, [
+                // created to make sure the admin won't make a mistake when creating his/her account
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter the same password',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 4096,
+                    ]),
+                ],
+            ])
         ;
     }
 
