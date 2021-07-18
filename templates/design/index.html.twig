@@ -10,45 +10,58 @@
 {% block body %}
 
 <h1 class="design-title">Design métallique</h1>
-
-<div class="container">
-  <h3 class="carousel_actu">
-    Actualités
-  </h3>
-	<div class="carousel">
-		<input type="radio" id="carousel-1" name="carousel[]" checked>
-		<input type="radio" id="carousel-2" name="carousel[]">
-    <input type="radio" id="carousel-3" name="carousel[]">
-    <ul class="carousel__items">
+{% if news is defined and news|length >= 1 %}
+  <div class="container">
+    <h3 class="carousel_actu">
+      Actualités
+    </h3>
+    <div class="carousel">
+    {% if news|length is same as(3) %}
+      <input type="radio" id="carousel-1" name="carousel[]" checked>
+      <input type="radio" id="carousel-2" name="carousel[]">
+      <input type="radio" id="carousel-3" name="carousel[]">
+        <ul class="carousel__items">
+          <a href="{{path('actuality') }}">
+            {% for actuality in news %}
+              <li class="carousel__item">
+                <h3 class="carousel_title">
+                  {{ actuality.title }}
+                </h3>
+                <img src="{{ vich_uploader_asset(actuality.images.0, 'urlFile') }}" alt="{{ actuality.images.0.name }} poster">
+              </li>
+            {% endfor %}
+          </a>
+        </ul>
+      <div class="carousel__prev">
+        <label for="carousel-1"></label>
+        <label for="carousel-2"></label>
+        <label for="carousel-3"></label>
+      </div>
+      <div class="carousel__next">
+        <label for="carousel-1"></label>
+        <label for="carousel-2"></label>
+        <label for="carousel-3"></label>
+      </div>
+      <div class="carousel__nav">
+        <label for="carousel-1"></label>
+        <label for="carousel-2"></label>
+        <label for="carousel-3"></label>
+      </div>
+    {% else %}
       <a href="{{path('actuality') }}">
-        {% for actuality in news %}
-        <li class="carousel__item">
-          <h3 class="carousel_title">
-            {{ actuality.title }}
-          </h3>
-          <img src="{{ vich_uploader_asset(actuality.images.0, 'urlFile') }}" alt="{{ actuality.images.0.name }} poster">
-          </li>
-        {% endfor %}
+        <div class="carousel__items">
+          <div class="carousel__item">
+            <h3 class="carousel_title">
+              {{ news[0].title }}
+            </h3>
+            <img src="{{ vich_uploader_asset(news[0].images.0, 'urlFile') }}" alt="{{ news[0].images.0.name }} poster">
+          </div>
+        </div>
       </a>
-		</ul>
-    <div class="carousel__prev">
-      <label for="carousel-1"></label>
-      <label for="carousel-2"></label>
-      <label for="carousel-3"></label>
-    </div>
-    <div class="carousel__next">
-      <label for="carousel-1"></label>
-      <label for="carousel-2"></label>
-      <label for="carousel-3"></label>
-    </div>
-    <div class="carousel__nav">
-      <label for="carousel-1"></label>
-      <label for="carousel-2"></label>
-      <label for="carousel-3"></label>
+    {% endif %}
     </div>
   </div>
-</div>
-
+{% endif %}
 <div class="intro">
 <p>Le service bureau d'études est destiné aux entreprises n'ayant pas de moyens techniques afin de réaliser le design,
   la conception et les plans de fabrication d'un ouvrage spécifique. <br>

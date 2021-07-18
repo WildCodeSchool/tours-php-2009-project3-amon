@@ -33,13 +33,12 @@ class ActualityController extends AbstractController
      */
     public function showCarouselArticles(ArticleRepository $articleRepository): array
     {
-        $articles = $articleRepository->findby(
+        return $articleRepository->findby(
             ['isNews' => true],
             ['date' => 'DESC'],
             3,
             0,
         );
-        return $articles;
     }
 
     /**
