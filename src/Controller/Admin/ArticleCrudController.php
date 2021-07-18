@@ -7,9 +7,11 @@ use App\Entity\Image;
 use App\Form\ImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -37,11 +39,44 @@ class ArticleCrudController extends AbstractCrudController
             TextEditorField::new('content', 'Contenu')
                 ->setRequired(true),
             BooleanField::new('isNews', 'Actualité'),
+            AssociationField::new('images', 'Image(s)')
+                ->onlyOnIndex()
+                ->setTextAlign('center')
+                ->formatValue(function ($value, $entity) {
+                    $images = '<div style="display: flex; flex-flow: row wrap; align-content: center; justify-content: space-evenly;">';
+                    foreach ($entity->getImages() as $image) {
+                        $images = sprintf(
+                            "%s<img src=\"%s/%s\" alt=\"%s\" style=\"margin-bottom: 5px; max-width: 100%%;\" >",
+                            $images,
+                            $this->getParameter('upload_directory'),
+                            $image->getUrl(),
+                            $image->getAlternativeText()
+                        );
+                    }
+                    return $images . '</div>';
+                }),
+            AssociationField::new('images', 'Image(s)')
+                ->onlyOnDetail()
+                ->formatValue(function ($value, $entity) {
+                    $images = '<div style="display: flex; flex-flow: row wrap; align-content: center; justify-content: space-evenly;">';
+                    foreach ($entity->getImages() as $image) {
+                        $images = sprintf(
+                            "%s<img src=\"%s/%s\" alt=\"%s\" style=\"margin-bottom: 10px; max-width: 100%%\" >",
+                            $images,
+                            $this->getParameter('upload_directory'),
+                            $image->getUrl(),
+                            $image->getAlternativeText()
+                        );
+                    }
+                    return $images . '</div>';
+                }),
             CollectionField::new('images', 'Image(s)')
                 ->allowAdd()
                 ->allowDelete()
                 ->setEntryType(ImageType::class)
-                ->setRequired(true),
+                ->setRequired(true)
+                ->hideOnDetail()
+                ->hideOnIndex(),
             ];
     }
 
