@@ -71,7 +71,7 @@ class Image
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\DateTime
+     * @Assert\Type("\DateTimeInterface")
      * @Assert\NotBlank
      */
     private datetime $updatedAt;

@@ -37,11 +37,13 @@ class ArticleCrudController extends AbstractCrudController
                 ->setFormat('dd / MM / yyyy')
                 ->setRequired(true),
             TextEditorField::new('content', 'Contenu')
-                ->setRequired(true),
+                ->setRequired(true)
+                ->setSortable(false),
             BooleanField::new('isNews', 'Actualité'),
             AssociationField::new('images', 'Image(s)')
                 ->onlyOnIndex()
                 ->setTextAlign('center')
+                ->setSortable(false)
                 ->formatValue(function ($value, $entity) {
                     $images = '<div style="display: flex; flex-flow: row wrap; align-content: center; justify-content: space-evenly;">';
                     foreach ($entity->getImages() as $image) {
@@ -57,11 +59,12 @@ class ArticleCrudController extends AbstractCrudController
                 }),
             AssociationField::new('images', 'Image(s)')
                 ->onlyOnDetail()
+                ->setSortable(false)
                 ->formatValue(function ($value, $entity) {
                     $images = '<div style="display: flex; flex-flow: row wrap; align-content: center; justify-content: space-evenly;">';
                     foreach ($entity->getImages() as $image) {
                         $images = sprintf(
-                            "%s<img src=\"%s/%s\" alt=\"%s\" style=\"margin-bottom: 10px; max-width: 100%%\" >",
+                            "%s<img src=\"%s/%s\" alt=\"%s\" style=\"margin-bottom: 5px; max-width: 100%%\" >",
                             $images,
                             $this->getParameter('upload_directory'),
                             $image->getUrl(),
@@ -75,6 +78,7 @@ class ArticleCrudController extends AbstractCrudController
                 ->allowDelete()
                 ->setEntryType(ImageType::class)
                 ->setRequired(true)
+                ->setSortable(false)
                 ->hideOnDetail()
                 ->hideOnIndex(),
             ];

@@ -50,13 +50,16 @@ class ImageCrudController extends AbstractCrudController
                 ])
                 ->allowMultipleChoices(false)
                 ->renderExpanded(true),
-            TextField::new('alternativeText', 'Texte alternatif'),
+            TextField::new('alternativeText', 'Texte alternatif')
+                ->setSortable(false),
             ImageField::new('url', 'Image')
                 ->onlyOnIndex()
-                ->setBasePath($this->getParameter('upload_directory')),
+                ->setBasePath($this->getParameter('upload_directory'))
+                ->setSortable(false),
             Field::new('urlFile', 'Image')
                 ->onlyOnForms()
-                ->setFormType(VichImageType::class),
+                ->setFormType(VichImageType::class)
+                ->setFormTypeOption('allow_delete', false),
             AssociationField::new('article'),
         ];
     }
@@ -125,7 +128,15 @@ class ImageCrudController extends AbstractCrudController
             if ($image->getArticle()->getImages()->count() > 1) {
                 $entityManager->remove($image);
                 $entityManager->flush();
+                $this->addFlash(
+                    'success',
+                    '"' . $image->getName() . '"'  . ' a été supprimée.'
+                );
             } else {
+                $this->addFlash(
+                    'warning',
+                    '"' . $image->getName() . '"'  . ' est la dernière image de votre article.'
+                );
                 $routeBuilder = $this->get(AdminUrlGenerator::class);
                 return $this->redirect(
                     $routeBuilder

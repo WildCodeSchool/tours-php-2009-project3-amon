@@ -38,7 +38,9 @@
         <img id="{{ image.id }}" class="gallery-img" src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.alternativeText}}" loading="lazy">
         <div class="button-container">
             {% if app.user %}
-            {{ include('form/_deletePassageImage.html.twig') }}
+                {% set article = image.article %}
+                {{ include('form/_editArticle.html.twig') }}
+                {{ include('form/_deleteImage.html.twig') }}
             {% endif %}
         </div>
     </div>

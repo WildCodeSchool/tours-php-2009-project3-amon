@@ -20,11 +20,11 @@ class ActualityController extends AbstractController
      */
     public function showArticles(ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findBy(
-            ["isNews" => true],
+        $news = $articleRepository->findBy(
+            ['isNews' => true],
             ['date' => 'DESC'],
         );
-        return $this->render('actuality/index.html.twig', ['articles' => $articles]);
+        return $this->render('actuality/index.html.twig', ['news' => $news]);
     }
 
     /**
@@ -39,25 +39,5 @@ class ActualityController extends AbstractController
             3,
             0,
         );
-    }
-
-    /**
-     * Editing an article, but can not delete image for now, or it goes out of the db too.
-     * @Route("/actualites/{id}/edit", name="actuality_edit")
-     */
-    public function editArticles(Request $request, Article $article, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(ArticleFormType::class, $article);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('actuality');
-        }
-
-        return $this->render('actuality/edit.html.twig', [
-            'article' => $article,
-            'form' => $form->createView(),
-        ]);
     }
 }

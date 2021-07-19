@@ -1,0 +1,7 @@
+{% set url = ea_url()
+    .setController('App\\Controller\\Admin\\ArticleCrudController')
+    .setAction('edit')
+    .setEntityId(article.id) %}
+<form method="post" action="{{ url }}">
+    <button class="edit-article-button"></button>
+</form>

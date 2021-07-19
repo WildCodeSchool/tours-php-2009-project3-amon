@@ -10,14 +10,10 @@
 {% block body %}
 <section class="actualityContainer">
 	<h1 id="gallery-title">Les Actualités</h1>
-	{% for article in articles %}
+	{% for article in news %}
 		<div class="article-button-container">
 			{% if app.user %}
-				<form method="post" action="{{ path('actuality_edit', {'id': article.id}) }}">
-					<input type="hidden" name="_method" value="EDIT">
-					<input type="hidden" name="_token" value="{{ csrf_token('edit' ~ article.id) }}">
-					<button class="edit-article-button"></button>
-				</form>
+				{{ include('form/_editArticle.html.twig') }}
 				{{ include('form/_deleteArticle.html.twig') }}
 			{% endif %}
 		</div>
