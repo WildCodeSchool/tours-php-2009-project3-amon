@@ -2,18 +2,115 @@
     --button-color: rgba(212,175,55,0.5)/*/#d3b252*/;
     --light-color: white;
 }
+/* ---------------------------- The side navigation menu button -------------------------------- */
+#categories-pop {
+    width: 14rem;
+    color: var(--light-color);
+    margin: -2% 0 0; /* .main-title's margin-top */
+    font-size: 1.8em;
+    line-height: 2.2rem;
+    cursor:pointer;
+    position: fixed;
+    left: 0;
+    border: 0;
+    padding: 0.2rem;
+    z-index: 1;
+}
 
-main {
+#media-hidden{
+    font-family: var(--main-font);
+
+}
+
+#categories-pop::after {
+    content: "";
+    background:  url("../images/silver-textured-background.jpeg");
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+
+
+/* ------------------------------ The side navigation menu ------------------------------------- */
+.sidenav {
+    height: auto; /* 100% Full-height - header total height - button total height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    margin-top: calc(2.2rem + 0.4rem - 2%); /* Stay at the top, under the button (category-pop's line height + paddings)*/
+    margin-left: -2px;
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.3s; /* 2 second transition effect to slide in the sidenav */
+    background-color: rgba(0, 0, 0, 0.247);
+    border-right: 2px solid rgb(243, 233, 233);
+    border-bottom:  2px solid rgb(243, 233, 233);
+    border-image: url("../images/silver-textured-background.jpeg") 2;
+}
+
+.sidenav::after {
+    content: "";
+    opacity: 0.9;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+    background:  url("../images/background-blue-90deg.png");
+}
+
+#sn-linklist {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin: 0;
+    /* Place the buttons (closing "x"'s line-height + margin top) from the top, to leave necessary space for the closing "x"*/
+    padding: calc( 1.5rem + 4% ) 0 0;
+}
+
+.sn-button {
+    list-style-type: none;
+    width: 100%;
+    margin: 2.5% 0;
+    padding: 2.5% 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.sn-button:hover {
+    background:  url("../images/silver-textured-background.jpeg");
+}
+
+.sn-link {
+    text-decoration: none;
+    color:  white;
+    font-size: 1.5em;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Position and style the close button (top right corner) */
+#closebtn {
+    box-sizing: content-box;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    font-size: 3rem;
+    line-height: 50%;
+    text-align: end;
+}
+
+/* -------------------- Gallery content -------------------- */
+#gallery {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
-}
-
-#gallery-title {
-    padding-top: 1%;
-    text-align: center;
-    text-decoration: underline;
-    width: 100%;
 }
 
 .image-container{
@@ -36,47 +133,21 @@ main {
     position: absolute;
     align-self: flex-start;
 }
-.delete-button{
+.action-button {
+    background-size: cover;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+}
+#delete-button {
     background-image: url("../images/poubelle.png");
-    background-size: cover;
-    width: 3vw;
-    height: 3vw;
-    border-radius: 50%;
 }
 
-.edit-article-button{
+#edit-article-button {
     background-image: url("../images/edit-logo.png");
-    background-size: cover;
-    width: 3vw;
-    height: 3vw;
-    border-radius: 50%;
 }
 
-/* The side navigation menu button */
-#categories-pop {
-    width: 14rem;
-    color: var(--light-color);
-    margin: 0;
-    font-size: 2rem;
-    cursor:pointer;
-    position: fixed;
-    border: 0px;
-    padding: 0.2rem;
-}
-
-#categories-pop::after {
-    content: "";
-    background:  url("../images/silver-textured-background.jpeg");
-    opacity: 0.8;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-}
-
-/* Paging */
+/* ------------------------------------ Paging -------------------------------------- */
 .paging {
     text-align: center;
     font-size: 1.5em;
@@ -88,74 +159,7 @@ main {
     font-size: 1.4em;
 }
 
-/* The side navigation menu */
-.sidenav {
-    height: auto; /* 100% Full-height - header total height - button total height */
-    width: 0px; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    margin-top: calc(2rem + 0.4rem + 4px); /* Stay at the top, under the button (category-pop's font-size + padding + border) */
-    left: 0;
-    overflow-x: hidden; /* Disable horizontal scroll */
-    transition: 0.3s; /* 2 second transition effect to slide in the sidenav */
-    background-color: rgba(0, 0, 0, 0.247);
-    border-right: 2px solid rgb(243, 233, 233);
-    border-bottom:  2px solid rgb(243, 233, 233);
-    border-image: url("../images/silver-textured-background.jpeg") 2;
-    margin-left: -2px;
-}
-
-.sidenav::after {
-    content: "";
-    opacity: 0.9;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-    background:  url("../images/background-blue-90deg.png");
-}
-
-  /* Position and style the close button (top right corner) */
-#closebtn {
-    position: absolute;
-    top: 15px;
-    right: 10px;
-    font-size: 50px;
-    margin-left: 50px;
-    line-height: 0;
-}
-
-#sn-linklist {
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    padding-top: 28px; /* Place content 28px from the top, to leave some space to the closing "x"*/
-}
-
-.sn-button {
-    list-style-type: none;
-    width: 100%;
-    margin: 2.5% 0;
-    padding: 2.5% 0;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.sn-button:hover {
-    background:  url("../images/silver-textured-background.jpeg");
-}
-
-.sn-link {
-    text-decoration: none;
-    color:  white;
-    font-size: 1.5em;
-}
-
-/* -- Lightbox Section -- */
+/* --------------------------------- Lightbox Section -------------------------------- */
 .lightbox{
     position: fixed;
     top: 0;
@@ -168,6 +172,7 @@ main {
     animation: lightboxIn 0.5s;
     transition: opacity 0.3s;
 }
+
 .lightbox.fadeOut{
     opacity: 0;
 }
@@ -175,11 +180,11 @@ main {
 .lightbox__close{
     width: 4vh;
     height: 4vh;
-    background: url('../images/cross-mark.svg') center center / 100% 100% transparent;
-    background-repeat: no-repeat;
+    background: transparent url('../images/cross-mark.svg') no-repeat center center;
+    background-size: cover;
+    position: fixed;
     top: 5vh;
     right: 5vh;
-    position: fixed;
     z-index: 12;
     border: none;
     cursor: pointer;
@@ -188,44 +193,25 @@ main {
 .lightbox__container{
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     background-image: url("../images/background-blue.png");
     border: 2px solid transparent;
-    border-image: url("../images/silver-textured-background.jpeg") 2;
-    margin: 2%;
-    min-height: 92vh;
+    border-image: url("../images/silver-textured-background.jpeg") 1;
+    margin: 2vmin;
+    min-height: calc(100vh - 4vmin);
 }
 
 #article_title {
-    width: 80%;
+    width: calc( 100% - ( 4vh + 1% ));/* lightbox width - (lightbox close button + little margin between them)*/
     text-align: center;
-}
-
-.lightbox_image {
-    max-width: 100%;
-    max-height: 100%;
-    box-sizing: content-box;
-    z-index: 1;
-    margin: auto 0;
+    font-size: 2em;
 }
 
 .lightbox_text {
     width: 30%;
-    height: 60%;
-    margin: 0 0 0 1rem;
-}
-
-.lightbox_image-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    height: 70vh;
     overflow-y: scroll;
-    max-width: 30%;
-    box-sizing: content-box;
-    height: auto;
-    padding: 0 0 0 1rem;
 }
-
 .lightbox_image-border {
     z-index: 3;
     padding: 0;
@@ -236,12 +222,7 @@ main {
     position: relative;
     margin: 0;
     border: 2px solid;
-    border-image-outset: 0;
-    border-image-repeat: stretch;
-    border-image-slice: 100%;
-    border-image-source: none;
-    border-image-width: 1;
-    border-image: url(/build/images/silver-textured-background.1333bbe5.jpeg) 2;
+    border-image: url("../images/silver-textured-background.jpeg") 1;
     background-color: rgba(0, 0, 0, 0.247);
 }
 
@@ -249,7 +230,29 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 70%;
+    width: calc( 69% - 2px);
+    border-right: 2px solid;
+    border-image: url("../images/silver-textured-background.jpeg") 1;
+    object-fit: contain;
+}
+
+.lightbox_image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    box-sizing: content-box;
+    z-index: 1;
+}
+
+.lightbox_image-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    width: 30%;
+    box-sizing: content-box;
+    height: auto;
+    padding: 0 0 0 0.5rem;
 }
 
 .lightbox_mini {
@@ -257,6 +260,10 @@ main {
     max-height: 100%;
     box-sizing: content-box;
     margin: 0 0 1rem 0;
+}
+
+.lightbox_mini:last-of-type {
+    margin: 0;
 }
 
 @keyframes lightboxIn {
@@ -274,8 +281,11 @@ main {
     }
 
     .sidenav {
-        margin-top: -2px; /*So the burger border-top is melted in the navbar border*/
+        margin-top: -17px; /*So the burger border-top is melted in the navbar border*/
         border-top:  2px solid rgb(243, 233, 233);
+    }
+    .sn-link {
+        font-size: 1.2em;
     }
 
     #gallery-title {
@@ -283,58 +293,60 @@ main {
     }
 
     .lightbox__container {
-        margin: 1vh;
-        max-height: 98vh;
+        margin: 1vmin;
+        max-height: calc(100vh - 2vmin);
+        max-width: calc(100vw - 2vmin);
     }
     #article_title {
         display: flex;
         justify-content: center;
-        height: 8vh;
-        margin: 0;
+        align-self: flex-start;
+        width: calc( 100% - ( 4vh + 1% ));/* lightbox width - (lightbox close button + little margin between them)*/
+        height: 13vh;
+        margin-right: calc(4vh + 1%);
         overflow-x: scroll;
     }
     .lightbox_image-border {
         width: 90%;
-        height: 60vh;
-        flex-flow: row wrap;
+        height: 45vh;
+        flex-flow: row nowrap;
     }
 
     .lightbox_main-image-container {
-        width: 100%;
+        width: 70%;
         height: 45vh;
     }
 
     .lightbox_image-list {
-        flex-direction: row;
+        flex-direction: column;
         overflow-x: scroll;
-        max-width: 100%;
-        max-height:15vh;
+        max-width: 30%;
+        max-height:45vh;
         box-sizing: border-box;
         padding: 0;
     }
 
     .lightbox_mini {
-
         box-sizing: border-box;
         max-width: calc(15vh - 0.5rem);
         max-height: 100%;
-        padding: 0 0.5rem 0rem 0rem;
+        padding: 0 0 0.5rem 0.5rem;
         margin: 0;
     }
 
     .lightbox_mini:first-of-type {
-        padding: 0 0.5rem 0rem 0.5rem;
+        padding: 0.5rem 0 0.5rem 0.5rem ;
     }
 
     .lightbox_text {
         width: 100%;
-        height: 20vh;
+        height: 30vh;
         overflow-y: scroll;
         padding: 1rem;
     }
     .lightbox__close {
-        top: 3vh;
-        right: 3vh;
+        top: 3vmin;
+        right: 3vmin;
     }
 }
 @media screen and (min-width:500px) and (max-width: 900px) {
@@ -343,7 +355,7 @@ main {
         margin:2.5% 0;
     }
 
-    .delete-button{
+    .action-button {
         width: 6vw;
         height: 6vw;
     }
@@ -355,7 +367,7 @@ main {
         width: 90%;
         margin:5%;
     }
-    .delete-button{
+    .action-button {
         width: 10vw;
         height: 10vw;
     }

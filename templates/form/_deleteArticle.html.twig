@@ -4,5 +4,5 @@
     .setEntityId(article.id) %}
 <form method="post" action="{{ url }}" onsubmit="return confirm('Voulez vous supprimer cet article ?');">
     <input type="hidden" name="token" value="{{ csrf_token('ea-delete') }}" />
-    <button class="delete-article-button"></button>
+    <button id="delete-article-button" class="action-button"></button>
 </form>

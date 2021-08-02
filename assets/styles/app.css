@@ -3,10 +3,12 @@
 :root {
     --button-color: rgba(255, 217, 0, 0.664);
     --light-color: white;
-    --main-font: 'Quicksand';
+    --main-font: 'Baskervville';
     --main-color: #ffffff;
     --secondary-color: #ff6c71;
-    --navbar-height: calc(10vh + 1.5rem + 2px); /*navbar height : 10vh for ul height + 1rem ul's padding-top + 2px border-bottom from header.
+    --title-fontsize: 2em;
+    --paragraph-fontsize: 1.2em;
+    --navbar-height: calc(10vh + 1.5rem + 2px); /*navbar height : 10vh for ul height + 1.5rem ul's padding-top + 2px border-bottom from header.
     Beware : box-sizing is set to border-box*/
 }
 
@@ -28,9 +30,52 @@ body {
     font-family: var(--main-font);
 }
 
+/* scrollbar styling */
+
+html {
+    --scrollbarBG: rgba(0, 0, 0, 0.247);
+    --thumbBG: rgba(255, 255, 255, 0.2);
+}
+*::-webkit-scrollbar {
+    width: 11px;
+}
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+*::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+}
+*::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG) ;
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
+}
+ /* ------ // --------*/
+
 .content {
     flex: 1 0 auto;
     margin-top: var(--navbar-height);
+}
+
+/* Principal title for all page */
+.main-title{
+    color: var(--main-color);
+    font-size: var(--title-fontsize);
+    margin: 2% 0;
+    text-align: center;
+}
+/* Custom <hr> with metallic effect */
+.custom-hr {
+    width: 40%;
+    margin-bottom: 2%;
+    border-bottom: 1px solid;
+    border-image: url("../images/silver-textured-background.jpeg") 2;
+}
+
+.categories-title{
+    color: var(--main-color);
+    font-size: var(--title-fontsize)
 }
 
 header {
@@ -50,7 +95,7 @@ header {
 .navbar {
     width: 100%;
     display: flex;
-    font-size: 2.8vmin;
+    font-size: 1.3em;
     background-color:rgba(0, 0, 0, 0.247);
     align-items: center;
     text-align: center;
@@ -87,9 +132,8 @@ a {
     justify-content: space-evenly;
     height: 10vh;
     list-style: none;
-    padding: 0;
     margin-top: 0;
-    padding-top: 1.5rem;
+    padding: 1.5rem 0 0;
     margin-bottom: 1.5rem;
 }
 
@@ -100,9 +144,8 @@ a {
     justify-content: space-evenly;
     height: 10vh;
     list-style: none;
-    padding: 0;
     margin-top: 0;
-    padding-top: 1.5rem;
+    padding: 1.5rem 0 0;
     margin-bottom: 1.5rem;
 }
 
@@ -126,15 +169,11 @@ a {
     list-style: none;
 }
 
-.deconnection-link {
-    text-decoration: underline;
-    color: var(--main-color);
-}
-
 .footer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     background-color: rgba(0, 0, 0, 0.185);
     margin-top: auto;
 }
@@ -142,16 +181,68 @@ a {
 .footer a {
     text-decoration: none;
     color: var(--main-color);
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.login-button img {
-    width: 50%;
-    position: relative;
+.footer-icons-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
 }
 
-/* Form button only if user log on*/
-.form-button:link, .form-button :visited, .form-button:hover, .form-button:active {
-    color: var(--main-color);
+.footer-icon {
+    height: 100%;
+}
+
+/* ---- Registration and log-in page ---- */
+
+#logFormTitle {
+    text-align: center;
+    margin-top: 3%;
+}
+
+#logFormHr{
+    width : 20%;
+    border-bottom: 1px solid;
+    border-image: url("../images/silver-textured-background.jpeg") 2;
+}
+
+#logForm {
+    width: 30%;
+    margin : 2% 35% 2% 35%;
+    padding: 1% 2% 3% 2%;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.30);
+    text-align: center;
+    border: 1px solid;
+    border-image: url("../images/silver-textured-background.jpeg") 2;
+}
+#logForm .h2{
+    padding-bottom: 5%;
+}
+
+#logForm label{
+    font-size: 1.1em;
+    float: left;
+    margin-left: 10%;
+}
+
+#logForm input {
+    width: 80%;
+}
+
+#logForm .btn {
+    font-size: 1.1em;
+    font-family: var(--main-font);
+    margin-top: 5%;
+}
+
+/* Register form label */
+.register-label{
+    margin: 5%;
 }
 
 @media screen and (max-width:800px) {
@@ -211,7 +302,6 @@ a {
     }
     .legalNoticeTitle{
         text-align: center;
-        padding-bottom: 1%;
         font-size: 2em;
     }
     .legalNoticeSubText{
@@ -221,3 +311,7 @@ a {
     .tabulationList{
         margin-left: 2%;
     }
+    #legalNotice h2 {
+        text-decoration: gray underline;
+    }
+

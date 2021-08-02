@@ -59,6 +59,8 @@ class RegistrationController extends AbstractController
                     );
                     // do anything else you need here, like send an email
                     return $guard->authenticateUserAndHandleSuccess($user, $request, $login, 'main');
+                } else {
+                    $this->addFlash('warning', 'Les mots de passe doivent être identiques');
                 }
             }
 

@@ -35,12 +35,12 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('admin', './assets/js/admin.js')
     .addEntry('contact', './assets/js/contact.js')
     .addEntry('home', './assets/js/home.js')
     .addEntry('design', './assets/js/design.js')
     .addEntry('passage', './assets/js/passage.js')
     .addEntry('gallery', './assets/js/gallery.js')
-    .addEntry('form', './assets/js/form.js')
     .addEntry('actuality', './assets/js/actuality.js')
     .addEntry('confirmationModal', './assets/js/confirmationModal.js')
 

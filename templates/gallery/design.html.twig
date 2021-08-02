@@ -21,40 +21,42 @@
 {% block title %}
     {{ categories[category]|capitalize }}{% endblock %}
 {% block body %}
-
-<button id="categories-pop" >≡<span id="media-hidden"> Catégories</span></button>
-
-<nav id="mySidenav" class="sidenav">
-    <ul id="sn-linklist">
-        <a href="#" class="sn-link" id="closebtn">&times;</a>
-        <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'outdoor layout'}) }}" class="sn-link">Aménagement extérieur</a></li>
-        <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'privacy screen and sun visor'}) }}" class="sn-link">Brise-vue et <br> pare-soleil</a></li>
-        <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'decoration'}) }}" class="sn-link">Décoration</a></li>
-        <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'stairs'}) }}" class="sn-link">Escaliers</a></li>
-        <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'railing'}) }}" class="sn-link">Garde-corps</a></li>
-        <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'glass trap'}) }}" class="sn-link">Trappes vitrées</a></li>
-        <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'canopy'}) }}" class="sn-link">Verrières</a></li>
-        <li class="sn-button last"><a href="{{path('design_gallery') }}" class="sn-link" id="all-categories">Toutes</a></li>
-    </ul>
-</nav>
-
 <main>
+    {# Sidenavigation menu #}
+    <button id="categories-pop" >≡<span id="media-hidden"> Catégories</span></button>
+    <nav id="mySidenav" class="sidenav">
+        <ul id="sn-linklist">
+            <a href="#" class="sn-link" id="closebtn">&times;</a>
+            <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'outdoor layout'}) }}" class="sn-link">Aménagement extérieur</a></li>
+            <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'privacy screen and sun visor'}) }}" class="sn-link">Brise-vue et <br> pare-soleil</a></li>
+            <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'decoration'}) }}" class="sn-link">Décoration</a></li>
+            <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'stairs'}) }}" class="sn-link">Escaliers</a></li>
+            <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'railing'}) }}" class="sn-link">Garde-corps</a></li>
+            <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'glass trap'}) }}" class="sn-link">Trappes vitrées</a></li>
+            <li class="sn-button"><a href="{{path('design_gallery_category', {'category': 'canopy'}) }}" class="sn-link">Verrières</a></li>
+            <li class="sn-button last"><a href="{{path('design_gallery') }}" class="sn-link" id="all-categories">Toutes</a></li>
+        </ul>
+    </nav>
+    {# ---  #}
     {% for message in app.flashes('empty_alert') %}
         <h3>{{ message }}</h3>
     {% endfor %}
-    <h1 id="gallery-title">{{ categories[category]|capitalize }}</h1>
-    {% for image in images %}
-        <div class="image-container">
-            <img id="{{ image.id }}" class="gallery-img" src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.alternativeText }}" loading="lazy">
-            <div class="button-container">
-                {% if app.user %}
-                    {% set article = image.article %}
-                    {{ include('form/_editArticle.html.twig') }}
-                    {{ include('form/_deleteImage.html.twig') }}
-                {% endif %}
+    <h1 class="main-title">{{ categories[category]|capitalize }}</h1>
+    <hr class="custom-hr">
+    <div id="gallery">
+        {% for image in images %}
+            <div class="image-container">
+                <img id="{{ image.id }}" class="gallery-img" src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.alternativeText }}" loading="lazy">
+                <div class="button-container">
+                    {% if app.user %}
+                        {% set article = image.article %}
+                        {{ include('form/_editArticle.html.twig') }}
+                        {{ include('form/_deleteImage.html.twig') }}
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </main>
 <div class="paging">
     {{ knp_pagination_render(images) }}

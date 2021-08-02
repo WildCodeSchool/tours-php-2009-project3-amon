@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Entity\Image;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -38,6 +39,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Articles', 'fa fa-file-invoice', Article::class);
         yield MenuItem::linkToCrud('Images', 'fa fa-image', Image::class);
         yield MenuItem::linkToLogout('Déconnexion', 'fa fa-sign-out-alt');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+    }
+
+    public function configureAssets(): Assets
+    {
+        return Assets::new()->addWebpackEncoreEntry('admin');
     }
 }

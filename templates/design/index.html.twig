@@ -9,7 +9,8 @@
 
 {% block body %}
 
-<h1 class="design-title">Design métallique</h1>
+<h1 class="main-title">Design métallique</h1>
+  <hr class="custom-hr">
 {% if news is defined and news|length >= 1 %}
   <div class="container">
     <h3 class="carousel_actu">
@@ -79,7 +80,7 @@
     <div class="left-column">
 
       <!-- first accordion-->
-      <h2>Aménagement extérieur</h2>
+      <h2 class="categories-title">Aménagement extérieur</h2>
       <div class="accordion">
           <div class="card">
             <a href="{{path('design_gallery_category', {'category': 'outdoor layout'}) }}">
@@ -112,7 +113,7 @@
       </div>
 
       <!-- second accordion-->
-      <h2>Brise-vue et pare-soleil</h2>
+      <h2 class="categories-title">Brise-vue et pare-soleil</h2>
       <div class="accordion">
         <div class="card">
           <a href="{{path('design_gallery_category', {'category': 'privacy screen and sun visor'}) }}">
@@ -146,7 +147,7 @@
       </div>
 
       <!-- third accordion-->
-      <h2>Décoration</h2>
+      <h2 class="categories-title">Décoration</h2>
       <div class="accordion">
         <div class="card">
           <a href="{{path('design_gallery_category', {'category': 'decoration'}) }}">
@@ -175,7 +176,7 @@
       </div>
 
       <!-- fourth accordion-->
-      <h2>Escaliers</h2>
+      <h2 class="categories-title">Escaliers</h2>
       <div class="accordion">
         <div class="card">
           <a href="{{path('design_gallery_category', {'category': 'stairs'}) }}">
@@ -210,7 +211,7 @@
 
     <div class="right-column">
       <!-- sixth accordion-->
-      <h2>Garde-corps</h2>
+      <h2 class="categories-title">Garde-corps</h2>
       <div class="accordion">
         <div class="card">
           <a href="{{path('design_gallery_category', {'category': 'railing'}) }}">
@@ -243,7 +244,7 @@
       </div>
 
       <!-- seventh accordion-->
-      <h2>Trappes vitrées</h2>
+      <h2 class="categories-title">Trappes vitrées</h2>
       <div class="accordion">
         <div class="card">
           <a href="{{path('design_gallery_category', {'category': 'glass trap'}) }}">
@@ -275,8 +276,8 @@
         </div>
       </div>
 
-      <!-- eigth accordion-->
-      <h2>Verrières</h2>
+      <!-- eight accordion-->
+      <h2 class="categories-title">Verrières</h2>
       <div class="accordion">
         <div class="card">
           <a href="{{path('design_gallery_category', {'category': 'canopy'}) }}">
@@ -309,7 +310,7 @@
       </div>
 
       <!-- ninth accordion-->
-      <h2>Passages secrets</h2>
+      <h2 class="categories-title">Passages secrets</h2>
       <div class="accordion">
         <div class="card">
           <a href="{{path('passage_index', {'category': 'secret passage'}) }}">

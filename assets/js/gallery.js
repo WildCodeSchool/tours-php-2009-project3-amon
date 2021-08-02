@@ -92,16 +92,16 @@ class Lightbox {
         dom.classList.add('lightbox');
         dom.innerHTML = `<button class="lightbox__close"></button>
         <div class="lightbox__container">
-            <h2 id="article_title">${articleStuff.title}</h2>
+            <h1 id="article_title">${articleStuff.title.charAt(0).toUpperCase() + articleStuff.title.slice(1)}</h1>
             <div class="lightbox_image-border">
                 <div class="lightbox_main-image-container">
                     <img class="lightbox_image" src="${currentSrc}" alt="${currentAlt}">
                 </div>
                 <div class="lightbox_image-list ">${images} </div>
             </div>
-            <p class="lightbox_text">
+            <div class="lightbox_text">
                 ${articleStuff.content}   
-            </p>
+            </div>
         </div>`;
         dom.querySelector('.lightbox__close').addEventListener('click', this.close.bind(this));
         return dom;

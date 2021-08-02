@@ -226,16 +226,16 @@ main {
 }
 
 
-/* Principal Title of the secret passage page */
+/* Principal Title of the design metallic page */
 .design-title {
   color: var(--main-color);
-  font-size: 2.5vw;
+  font-size: var(--title-fontsize);
   margin-bottom: 2%;
   text-align: center;
   text-decoration: var(--main-color) underline;
 }
 .intro{
-  font-size: 1.3vw;
+  font-size: var(--paragraph-fontsize);
   text-align: center;
   margin: 0 3%;
 }
@@ -266,7 +266,7 @@ h2::first-letter {
 }
 
 .right-column h2 {
-  padding: 2em 2em 0em 0em;
+  padding: 2em 2em 0 0;
   font-size: 1.5rem;
 }
 
@@ -328,7 +328,6 @@ h2::first-letter {
 @media screen and (min-width: 700px) and (max-width: 1200px) {
   .design-title {
     margin-top: 2%;
-    font-size: 1.5em;
   }
   .intro {
     font-size: 1.1em;
@@ -352,12 +351,8 @@ h2::first-letter {
 }
 
 @media screen and (min-width: 500px) and (max-width: 700px) {
-  .intro {
-    font-size: 1.1em;
-  }
   .design-title {
     margin-top: 2%;
-    font-size: 1.5em;
   }
   .left-column, .right-column {
     width:100%;
@@ -390,10 +385,8 @@ h2::first-letter {
 @media screen and (min-width: 250px) and (max-width: 500px) {
   .design-title {
     margin-top: 5%;
-    font-size: 1.5em;
   }
   .intro {
-    font-size: 1.1em;
     margin: 0 3%;
     text-align: justify;
   }

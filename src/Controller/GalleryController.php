@@ -181,16 +181,4 @@ class GalleryController extends AbstractController
             return $this->redirectToRoute('passage_gallery');
         }
     }
-
-    /**
-     * @Route("/actualites/{id}/delete", name="actuality_delete", methods="DELETE")
-     */
-    public function deleteArticle(Request $request, Article $article, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($article);
-            $entityManager->flush();
-        }
-        return $this->redirectToRoute('actuality');
-    }
 }

@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Entity\Image;
 use App\Form\ImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -89,5 +91,17 @@ class ArticleCrudController extends AbstractCrudController
         return parent::configureCrud($crud)
             ->setEntityLabelInSingular('Article')
             ->setEntityLabelInPlural('Articles');
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        $actions
+            ->update(Crud::PAGE_INDEX, Action::EDIT, function (Action $action) {
+                return $action->setIcon('fa fa-pen');
+            })
+            ->update(Crud::PAGE_INDEX, Action::DELETE, function (Action $action) {
+                return $action->setIcon('fa fa-trash');
+            });
+        return $actions;
     }
 }

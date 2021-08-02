@@ -8,7 +8,8 @@
 {% block title %}Passages Secrets{% endblock %}
 
 {% block body %}
-    <h1 class="passage-title">Les Passages Secrets</h1>
+    <h1 class="main-title">Les Passages Secrets</h1>
+    <hr class="custom-hr">
     <section class="passage-intro">
             <p class="intro">
                 L'aventure passage secret pour Amon commence avec un grand-père maçon qui réalisait chez lui
@@ -30,7 +31,7 @@
             <img class="images-passage1 secret" src="{{ asset('build/images/passages-secrets/ps-14.jpg') }}" alt="Photo bibliothèque" loading="lazy">
         </div>
         <div>
-            <h2 class="passage-subtitle">La Bibliothèque</h1>
+            <h2 class="passage-subtitle">La Bibliothèque</h2>
             <p class="passage-description">Un exemple de réalisation de passage secret est
                 forcément la bibliothèque, un grand classique du genre. La porte est incorporée dans l'ouvrage et
                 rien ne laisse paraître de son usage réel. <br><br>
@@ -45,7 +46,7 @@
         </div>
 
         <a href="{{path('passage_gallery_category', {'category': 'library'}) }}"><div class="passage-miniature">
-                <p class="galery-title" >Galerie</p>
+                <p class="gallery-title" >Galerie</p>
                 <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-5.jpg') }}" alt="Photo bibliothèque" loading="lazy">
                 <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-2.jpg') }}" alt="Photo bibliothèque" loading="lazy">
                 <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-6.jpg') }}" alt="Photo bibliothèque" loading="lazy">
@@ -67,14 +68,14 @@
             <img class="images-passage secret2" src="{{ asset('build/images/passages-secrets/ps-8.jpg') }}" alt="Photo bibliothèque" loading="lazy">
         </div>
         <a href="{{path('passage_gallery_category', {'category': 'mirror'}) }}"><div class="passage-miniature miniature2">
-                <p class="galery-title" >Galerie</p>
+                <p class="gallery-title" >Galerie</p>
                 <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-9.jpg') }}" alt="Photo bibliothèque" loading="lazy">
                 <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-10.jpg') }}" alt="Photo bibliothèque" loading="lazy">
                 <img class="images-miniature" src="{{ asset('build/images/passages-secrets/ps-12.jpg') }}" alt="Photo bibliothèque" loading="lazy">
         </div></a>
     </section>
     <section class="tailor-made">
-            <h1 class="tailor-made-passage-subtitle">Pièces sur mesure</h1>
+            <h1 class="tailor-made-subtitle passage-subtitle">Pièces sur mesure</h1>
             <p class="tailor-made-description">La réalisation et la conception de passages secrets ne s'arrêtent pas
                 aux portes dissimulées ou cloisons ouvrantes. Nous réalisons tous les projets proposés par les clients
                 en fonction de l'endroit et des envies de ceux-ci. <br><br>

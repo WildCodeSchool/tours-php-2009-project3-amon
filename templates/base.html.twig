@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('build/images/favicon.ico') }}" />
+    <link href='https://fonts.googleapis.com/css?family=Baskervville' rel='stylesheet'>
     <title>{% block title %}Amon Passage Secret{% endblock %}</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -43,12 +44,17 @@
         {% block body %}{% endblock %}
     </div>
     <footer class="footer">
-            <p>©2021-2022 Amon-creation.fr - Tous droits réservés</p>
-            <p><a href="{{path('legal_notice') }}">Mentions légales</a></p>
-            <p class="login-button"><a href="{{path ('admin') }}"><img src="{{ asset('build/images/padlock.png') }}" alt="Cadenas pour login"></a></p>
-            {% if app.user %}
-                <p><a class="deconnection-link" href="{{ path('app_logout') }}">Déconnexion</a></p>
-            {% endif %}
+        <p>©2021-2022 Amon-creation.fr - Tous droits réservés</p>
+        <p><a href="{{path('legal_notice') }}">Mentions légales</a></p>
+        <a class="footer-icons-container" href="{{path ('admin') }}">
+            <img class="footer-icon" src="{{ asset('build/images/ankh-svgrepo-com.svg') }}"
+                 alt="Icone représentant un ankh pour accéder à l'espace administrateur">
+        </a>
+        {% if app.user %}
+            <a class="footer-icons-container" href="{{ path('app_logout') }}">
+                <img class="footer-icon" src="{{ asset('build/images/se-deconnecter.svg') }}" alt="Logo de déconnexion">
+            </a>
+        {% endif %}
     </footer>
 
 {% block javascripts %}
