@@ -44,7 +44,7 @@ class Article
      * @ORM\Column(type="text")
      * @Assert\NotBlank
      * @Assert\Length(
-     *     min = 20,
+     *     min = 15,
      *     max = 10000,
      *     minMessage = "Le contenu est trop court.",
      *     maxMessage = "Le contenu ne doit pas dépasser {{ limit }} caractères.",
