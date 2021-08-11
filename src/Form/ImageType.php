@@ -9,7 +9,9 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image as ImageConstraint;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ImageType extends AbstractType
@@ -27,6 +29,13 @@ class ImageType extends AbstractType
             ])
             ->add('urlFile', VichImageType::class, [
                 'label' => 'Image',
+                'constraints' => [
+                    new ImageConstraint([
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                    ]),
+                ],
                 'required' => !($_REQUEST['crudAction'] === 'edit'),
                 'allow_delete' => false,
             ])

@@ -22,6 +22,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use function _HumbugBox15516bb2b566\RingCentral\Psr7\mimetype_from_extension;
 
 class ImageCrudController extends AbstractCrudController
 {

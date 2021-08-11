@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ImageRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,7 +22,7 @@ class Image
      * @ORM\Column(type="integer")
      * @Assert\Type("integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -45,6 +46,10 @@ class Image
 
     /**
      * @Vich\UploadableField(mapping="url_file", fileNameProperty="url")
+     * @Assert\File(
+     *     mimeTypes = {"image/*"},
+     *     mimeTypesMessage="Veuillez ne choisir que des fichiers de type image."
+     *     )
      * @var null|File
      */
     private ?File $urlFile = null;
@@ -85,6 +90,7 @@ class Image
     /**
      * @return array
      */
+    #[ArrayShape(['id' => "", 'name' => "string", 'alternativeText' => "string", 'url' => "string"])]
     public function getArray(): array
     {
         return [

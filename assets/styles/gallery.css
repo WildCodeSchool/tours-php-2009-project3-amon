@@ -1,17 +1,18 @@
 :root {
     --button-color: rgba(212,175,55,0.5)/*/#d3b252*/;
     --light-color: white;
+    --sidenav-btn:  calc(2.2rem + 0.4rem); /* category-pop's line height + paddings */
 }
 /* ---------------------------- The side navigation menu button -------------------------------- */
 #categories-pop {
     width: 14rem;
     color: var(--light-color);
-    margin: -2% 0 0; /* .main-title's margin-top */
     font-size: 1.8em;
     line-height: 2.2rem;
     cursor:pointer;
     position: fixed;
     left: 0;
+    top: var(--navbar-height);
     border: 0;
     padding: 0.2rem;
     z-index: 1;
@@ -42,9 +43,9 @@
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
-    margin-top: calc(2.2rem + 0.4rem - 2%); /* Stay at the top, under the button (category-pop's line height + paddings)*/
-    margin-left: -2px;
+    top: calc(var(--navbar-height) + var(--sidenav-btn)); /* Stay at the top, under the button */
     left: 0;
+    margin-left: -2px;
     overflow-x: hidden; /* Disable horizontal scroll */
     transition: 0.3s; /* 2 second transition effect to slide in the sidenav */
     background-color: rgba(0, 0, 0, 0.247);
@@ -107,6 +108,11 @@
 }
 
 /* -------------------- Gallery content -------------------- */
+#message {
+    margin-top: calc(var(--sidenav-btn) + 1em);
+    text-align: center;
+}
+
 #gallery {
     display: flex;
     flex-flow: row wrap;
@@ -281,7 +287,7 @@
     }
 
     .sidenav {
-        margin-top: -17px; /*So the burger border-top is melted in the navbar border*/
+        margin-top: -2px; /*So the burger border-top is melted in the navbar border*/
         border-top:  2px solid rgb(243, 233, 233);
     }
     .sn-link {

@@ -39,7 +39,7 @@
     </nav>
     {# ---  #}
     {% for message in app.flashes('empty_alert') %}
-        <h3>{{ message }}</h3>
+        <h3 id="message">{{ message }}</h3>
     {% endfor %}
     <h1 class="main-title">{{ categories[category]|capitalize }}</h1>
     <hr class="custom-hr">

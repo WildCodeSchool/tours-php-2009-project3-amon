@@ -9,11 +9,11 @@
 }
 
 .passage-intro {
-    margin: 3% 6% 8% 6%;
+    margin: 3% 3% 8%;
 }
 .intro{
     font-size: var(--paragraph-fontsize);
-    text-align: justify;
+    text-align: center;
 }
 
 /* -- Sections Library, Mirror, Tailor-Made -- */

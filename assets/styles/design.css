@@ -257,7 +257,7 @@ main {
 }
 
 .left-column h2 {
-  padding: 2em 0em 0em 2em;
+  padding: 2em 0 0 2em;
   font-size: 1.5rem;
 }
 
@@ -329,9 +329,6 @@ h2::first-letter {
   .design-title {
     margin-top: 2%;
   }
-  .intro {
-    font-size: 1.1em;
-  }
   .left-column, .right-column {
     width:100%;
   }
@@ -339,7 +336,7 @@ h2::first-letter {
     text-align: left;
   }
   .right-column h2 {
-    padding: 2em 0em 0em 2em;
+    padding: 2em 0 0 2em;
   }
   .right-column .accordion {
     transform: skew(-5deg);
@@ -361,7 +358,7 @@ h2::first-letter {
     text-align: left;
   }
   .right-column h2 {
-    padding: 2em 0em 0em 2em;
+    padding: 2em 0 0 2em;
   }
   .right-column .accordion {
     transform: skew(-5deg);
@@ -411,7 +408,7 @@ h2::first-letter {
     height: 75vmin;
   }
   .accordion .card:not(:last-child) {
-    margin-right: 0em;
+    margin-right: 0;
   }
   .accordion .card:hover {
     flex-grow: 1;
