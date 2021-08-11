@@ -5,33 +5,49 @@
 {{ encore_entry_link_tags('gallery') }}
 {% endblock %}
 
-{% block title %}{{ categorie|capitalize }}{% endblock %}
+{% set categories = {
+    'library' : 'Bibliothèques',
+    'mirror' : 'Mirroirs',
+    'all categories' : 'Tous les passages secrets',
+} %}
+
+{% block title %}
+    {{ categories[category]|capitalize }}
+{% endblock %}
 
 {% block body %}
 
-<button id="categories-pop" >≡<span id="media-hidden"> Catégories</span></button>
-
-<nav id="mySidenav" class="sidenav">
-    <ul id="sn-linklist">
-        <a href="#" class="sn-link" id="closebtn">&times;</a>
-        <li class="sn-button"><a href="{{path('passage_gallery_category', {'categorie': 'bibliothèques'}) }}" class="sn-link">Bibliothèques</a></li>
-        <li class="sn-button"><a href="{{path('passage_gallery_category', {'categorie': 'miroirs'}) }}" class="sn-link">Miroirs</a></li>
-        <li class="sn-button last"><a href="{{path('passage_gallery') }}" class="sn-link" id="all-categories">Toutes</a></li>
-    </ul>
-</nav>
-
 <main>
-    <h1 id="gallery-title">{{ categorie|capitalize }}</h1>
-    {% for image in images %}
-    <div class="image-container">
-        <img id="{{ image.id }}" class="gallery-img" src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.texteAlternatif}}" loading="lazy">
-        <div class="button-container">
-            {% if app.user %}
-            {{ include('form/_deletePassageImage.html.twig') }}
-            {% endif %}
-        </div>
-    </div>
+    {# Sidenavigation menu #}
+    <button id="categories-pop" >≡<span id="media-hidden"> Catégories</span></button>
+    <nav id="mySidenav" class="sidenav">
+        <ul id="sn-linklist">
+            <a href="#" class="sn-link" id="closebtn">&times;</a>
+            <li class="sn-button"><a href="{{path('passage_gallery_category', {'category': 'library'}) }}" class="sn-link">Bibliothèques</a></li>
+            <li class="sn-button"><a href="{{path('passage_gallery_category', {'category': 'mirror'}) }}" class="sn-link">Miroirs</a></li>
+            <li class="sn-button last"><a href="{{path('passage_gallery') }}" class="sn-link" id="all-categories">Toutes</a></li>
+        </ul>
+    </nav>
+    {# --- #}
+    {% for message in app.flashes('empty_alert') %}
+        <h3 id="message">{{ message }}</h3>
     {% endfor %}
+    <h1 class="main-title">{{ categories[category]|capitalize }}</h1>
+    <hr class="custom-hr">
+    <div id="gallery">
+        {% for image in images %}
+            <div class="image-container">
+                <img id="{{ image.id }}" class="gallery-img" src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.alternativeText}}" loading="lazy">
+                <div class="button-container">
+                    {% if app.user %}
+                        {% set article = image.article %}
+                        {{ include('form/_editArticle.html.twig') }}
+                        {{ include('form/_deleteImage.html.twig') }}
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </main>
 <div class="paging">
     {{ knp_pagination_render(images) }}
@@ -41,5 +57,4 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('gallery') }}
-    </script>
 {% endblock %}

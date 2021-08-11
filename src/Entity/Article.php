@@ -6,7 +6,6 @@ use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Image;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -18,59 +17,76 @@ class Article
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Assert\Type("integer")
      */
-    private int $id;
+    private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
      * @Assert\Length(
-     * min = 2,
-     * max = 255,
-     * minMessage = "Le titre doit faire au minimum {{ limit }} caractères.",
-     * maxMessage = "Le titre ne doit pas dépasser {{ limit }} caractères."
-     * )
+     *     min = 3,
+     *     max = 50,
+     *     minMessage = "Le titre doit faire au minimum {{ limit }} caractères.",
+     *     maxMessage = "Le titre ne doit pas dépasser {{ limit }} caractères.",
+     *     )
+     * @Assert\Type("string")
      */
-    private string $titre;
+    private string $title;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="date")
+     * @Assert\NotBlank
      */
     private \DateTimeInterface $date;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 15,
+     *     max = 10000,
+     *     minMessage = "Le contenu est trop court.",
+     *     maxMessage = "Le contenu ne doit pas dépasser {{ limit }} caractères.",
+     *     )
+     * @Assert\Type("string")
      */
-    private string $description;
+    private string $content;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean")
+     * @Assert\Type("bool")
      */
-    private string $section;
+    private bool $isNews;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Image::class, inversedBy="articles")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="article", orphanRemoval=true, cascade={"persist"})
+     * @Assert\NotBlank
+     * @Assert\Count(
+     *     min = 1,
+     *     minMessage = "Un article doit contenir au moins une image",
+     * )
      */
-    private Collection $image;
+    private Collection $images;
 
     public function __construct()
     {
-        $this->image = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
-     * @return mixed[]
+     * @return array
      */
     public function getArray(): array
     {
         $images = [];
-        foreach ($this->image as $img) {
+        foreach ($this->images as $img) {
             $images[] = $img->getArray();
         }
         return [
             'id' => $this->id,
-            'titre' => $this->titre,
-            'description' => $this->description,
+            'title' => $this->title,
+            'content' => $this->content,
             'date' => $this->date,
             'images' => $images,
         ];
@@ -81,14 +97,14 @@ class Article
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    public function getTitle(): ?string
     {
-        return $this->titre;
+        return $this->title;
     }
 
-    public function setTitre(string $titre): self
+    public function setTitle(string $title): self
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }
@@ -105,26 +121,26 @@ class Article
         return $this;
     }
 
-    public function getDescription(): string
+    public function getContent(): ?string
     {
-        return $this->description;
+        return $this->content;
     }
 
-    public function setDescription(string $description): self
+    public function setContent(string $content): self
     {
-        $this->description = $description;
+        $this->content = $content;
 
         return $this;
     }
 
-    public function getSection(): ?string
+    public function getIsNews(): ?bool
     {
-        return $this->section;
+        return $this->isNews;
     }
 
-    public function setSection(string $section): self
+    public function setIsNews(bool $isNews): self
     {
-        $this->section = $section;
+        $this->isNews = $isNews;
 
         return $this;
     }
@@ -132,15 +148,16 @@ class Article
     /**
      * @return Collection|Image[]
      */
-    public function getImage(): Collection
+    public function getImages(): Collection
     {
-        return $this->image;
+        return $this->images;
     }
 
     public function addImage(Image $image): self
     {
-        if (!$this->image->contains($image)) {
-            $this->image[] = $image;
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setArticle($this);
         }
 
         return $this;
@@ -148,8 +165,21 @@ class Article
 
     public function removeImage(Image $image): self
     {
-        $this->image->removeElement($image);
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getArticle() === $this) {
+                $image->setArticle(null);
+            }
+        }
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
     }
 }

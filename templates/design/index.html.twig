@@ -9,56 +9,70 @@
 
 {% block body %}
 
-<h1 class="design-title">Design métallique</h1>
-
-<div class="container">
-  <h3 class="carousel_actu">
-    Actualités
-  </h3>
-	<div class="carousel">
-		<input type="radio" id="carousel-1" name="carousel[]" checked>
-		<input type="radio" id="carousel-2" name="carousel[]">
-    <input type="radio" id="carousel-3" name="carousel[]">
-    <ul class="carousel__items">
+<h1 class="main-title">Design métallique</h1>
+  <hr class="custom-hr">
+{% if news is defined and news|length >= 1 %}
+  <div class="container">
+    <h3 class="carousel_actu">
+      Actualités
+    </h3>
+    <div class="carousel">
+    {% if news|length is same as(3) %}
+      <input type="radio" id="carousel-1" name="carousel[]" checked>
+      <input type="radio" id="carousel-2" name="carousel[]">
+      <input type="radio" id="carousel-3" name="carousel[]">
+        <ul class="carousel__items">
+          <a href="{{path('actuality') }}">
+            {% for actuality in news %}
+              <li class="carousel__item">
+                <h3 class="carousel_title">
+                  {{ actuality.title }}
+                </h3>
+                <img src="{{ vich_uploader_asset(actuality.images.0, 'urlFile') }}" alt="{{ actuality.images.0.name }} poster">
+              </li>
+            {% endfor %}
+          </a>
+        </ul>
+      <div class="carousel__prev">
+        <label for="carousel-1"></label>
+        <label for="carousel-2"></label>
+        <label for="carousel-3"></label>
+      </div>
+      <div class="carousel__next">
+        <label for="carousel-1"></label>
+        <label for="carousel-2"></label>
+        <label for="carousel-3"></label>
+      </div>
+      <div class="carousel__nav">
+        <label for="carousel-1"></label>
+        <label for="carousel-2"></label>
+        <label for="carousel-3"></label>
+      </div>
+    {% else %}
       <a href="{{path('actuality') }}">
-        {% for actu in actus %}
-        <li class="carousel__item">
-          <h3 class="carousel_title">
-            {{ actu.titre }}
-          </h3>
-          <img src="{{ vich_uploader_asset(actu.image.0, 'urlFile') }}" alt="{{ actu.image.0.nom }} poster">
-          </li> 
-        {% endfor %}
+        <div class="carousel__items">
+          <div class="carousel__item">
+            <h3 class="carousel_title">
+              {{ news[0].title }}
+            </h3>
+            <img src="{{ vich_uploader_asset(news[0].images.0, 'urlFile') }}" alt="{{ news[0].images.0.name }} poster">
+          </div>
+        </div>
       </a>
-		</ul>
-    <div class="carousel__prev">
-      <label for="carousel-1"></label>
-      <label for="carousel-2"></label>
-      <label for="carousel-3"></label>
-    </div>
-    <div class="carousel__next">
-      <label for="carousel-1"></label>
-      <label for="carousel-2"></label>
-      <label for="carousel-3"></label>
-    </div>
-    <div class="carousel__nav">
-      <label for="carousel-1"></label>
-      <label for="carousel-2"></label>
-      <label for="carousel-3"></label>
+    {% endif %}
     </div>
   </div>
-</div>
-
+{% endif %}
 <div class="intro">
 <p>Le service bureau d'études est destiné aux entreprises n'ayant pas de moyens techniques afin de réaliser le design,
   la conception et les plans de fabrication d'un ouvrage spécifique. <br>
 
-  Nous réalisons avec nos clients divers produits comme des escaliers, des garde-corps, des verrières, des trappes 
+  Nous réalisons avec nos clients divers produits comme des escaliers, des garde-corps, des verrières, des trappes
   vitrées motorisées et toutes sortes de structures porteuses pour le gros-oeuvre. <br><br>
 
   Nous apportons aussi notre savoir afin de développer des produits pour nos clients en recherche de développement. <br><br>
 
-  Nous travaillons sur le logiciel Solidworks qui nous permet un large éventail de réalisations possibles : 
+  Nous travaillons sur le logiciel Solidworks qui nous permet un large éventail de réalisations possibles :
   conception, mise en plan, réalisation de visuels réalistes pour les validations clients.
 </p>
 </div>
@@ -66,140 +80,265 @@
     <div class="left-column">
 
       <!-- first accordion-->
-      <h2>Aménagement extérieur</h2>
+      <h2 class="categories-title">Aménagement extérieur</h2>
       <div class="accordion">
           <div class="card">
-            <a href="{{path('design_gallery_category', {'categorie': 'aménagement extérieur'}) }}"><img src="{{ asset('build/images/amenagement-exterieur/ae-1.png') }}" alt="Une maison avec un escalier sur mesure" loading="lazy"></a> 
+            <a href="{{path('design_gallery_category', {'category': 'outdoor layout'}) }}">
+              <img src="{{ asset('build/images/amenagement-exterieur/ae-1.png') }}"
+                   alt="Une maison avec un escalier sur mesure"
+                   loading="lazy">
+            </a>
           </div>
           <div class="card second-card">
-            <a href="{{path('design_gallery_category', {'categorie': 'aménagement extérieur'}) }}"><img src="{{ asset('build/images/amenagement-exterieur/ae-11.jpg') }}" alt="Une maison avec un escalier sur mesure" loading="lazy"></a>
+            <a href="{{path('design_gallery_category', {'category': 'outdoor layout'}) }}">
+              <img src="{{ asset('build/images/amenagement-exterieur/ae-11.jpg') }}"
+                   alt="Une maison avec un escalier sur mesure"
+                   loading="lazy">
+            </a>
           </div>
           <div class="card third-card">
-            <a href="{{path('design_gallery_category', {'categorie': 'aménagement extérieur'}) }}"><img src="{{ asset('build/images/amenagement-exterieur/ae-4.jpg') }}" alt="Un ponton en bois et métal" loading="lazy"></a>
+            <a href="{{path('design_gallery_category', {'category': 'outdoor layout'}) }}">
+              <img src="{{ asset('build/images/amenagement-exterieur/ae-4.jpg') }}"
+                   alt="Un ponton en bois et métal"
+                   loading="lazy">
+            </a>
           </div>
           <div class="card fourth-card">
-            <a href="{{path('design_gallery_category', {'categorie': 'aménagement extérieur'}) }}"><img src="{{ asset('build/images/amenagement-exterieur/ae-6.jpg') }}" alt="Les extérieurs du Prieuré de Saint Cosme" loading="lazy"></a>
+            <a href="{{path('design_gallery_category', {'category': 'outdoor layout'}) }}">
+              <img src="{{ asset('build/images/amenagement-exterieur/ae-6.jpg') }}"
+                   alt="Les extérieurs du Prieuré de Saint Cosme"
+                   loading="lazy">
+            </a>
           </div>
       </div>
-      
+
       <!-- second accordion-->
-      <h2>Brise-vue et pare-soleil</h2>
+      <h2 class="categories-title">Brise-vue et pare-soleil</h2>
       <div class="accordion">
         <div class="card">
-          <a href="{{path('design_gallery_category', {'categorie': 'brise-vue et pare-soleil'}) }}"><img src="{{ asset('build/images/brise-vue-pare-soleil/bvps-2.jpeg') }}" alt="Une pergola sur une terrasse" loading="lazy"></a> 
+          <a href="{{path('design_gallery_category', {'category': 'privacy screen and sun visor'}) }}">
+            <img src="{{ asset('build/images/brise-vue-pare-soleil/bvps-2.jpeg') }}"
+                 alt="Une pergola sur une terrasse"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card second-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'brise-vue et pare-soleil'}) }}"><img src="{{ asset('build/images/brise-vue-pare-soleil/bvps-9.jpg') }}" alt="Un pont couvert par un pare-soleil en toile tendue" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'privacy screen and sun visor'}) }}">
+            <img src="{{ asset('build/images/brise-vue-pare-soleil/bvps-9.jpg') }}"
+                 alt="Un pont couvert par un pare-soleil en toile tendue"
+                 loading="lazy">
+          </a>
+
         </div>
         <div class="card third-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'brise-vue et pare-soleil'}) }}"><img src="{{ asset('build/images/brise-vue-pare-soleil/bvps-12.jpg') }}" alt="Une voile d'ombrage au-dessus d'un spa" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'privacy screen and sun visor'}) }}">
+            <img src="{{ asset('build/images/brise-vue-pare-soleil/bvps-12.jpg') }}"
+                 alt="Une voile d'ombrage au-dessus d'un spa"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card fourth-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'brise-vue et pare-soleil'}) }}"><img src="{{ asset('build/images/brise-vue-pare-soleil/bvps-11.jpg') }}" alt="Une pergola en bois" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'privacy screen and sun visor'}) }}">
+            <img src="{{ asset('build/images/brise-vue-pare-soleil/bvps-11.jpg') }}"
+                 alt="Une pergola en bois"
+                 loading="lazy">
+          </a>
         </div>
       </div>
-      
+
       <!-- third accordion-->
-      <h2>Décoration</h2>
+      <h2 class="categories-title">Décoration</h2>
       <div class="accordion">
         <div class="card">
-          <a href="{{path('design_gallery_category', {'categorie': 'décoration'}) }}"><img src="{{ asset('build/images/decoration/deco-1.jpg') }}" alt="Un bureau fait sur mesure terrasse" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'decoration'}) }}">
+            <img src="{{ asset('build/images/decoration/deco-1.jpg') }}"
+                 alt="Un bureau fait sur mesure terrasse"
+                 loading="lazy"></a>
         </div>
         <div class="card second-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'décoration'}) }}"><img src="{{ asset('build/images/decoration/deco-3.jpg') }}" alt="Le plan en 3D d'un bureau sur mesure" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'decoration'}) }}">
+            <img src="{{ asset('build/images/decoration/deco-3.jpg') }}"
+                 alt="Le plan en 3D d'un bureau sur mesure"
+                 loading="lazy"></a>
         </div>
         <div class="card third-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'décoration'}) }}"><img src="{{ asset('build/images/decoration/deco-5.jpg') }}" alt="Une mappemonde découpée au laser installée sur un mur" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'decoration'}) }}">
+            <img src="{{ asset('build/images/decoration/deco-5.jpg') }}"
+                 alt="Une mappemonde découpée au laser installée sur un mur"
+                 loading="lazy"></a>
         </div>
         <div class="card fourth-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'décoration'}) }}"><img src="{{ asset('build/images/decoration/deco-8.jpg') }}" alt=" Une mappemonde découpée au laser posée sur un mur" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'decoration'}) }}">
+            <img src="{{ asset('build/images/decoration/deco-8.jpg') }}"
+                 alt=" Une mappemonde découpée au laser posée sur un mur"
+                 loading="lazy"></a>
         </div>
       </div>
 
       <!-- fourth accordion-->
-      <h2>Escaliers</h2>
+      <h2 class="categories-title">Escaliers</h2>
       <div class="accordion">
         <div class="card">
-          <a href="{{path('design_gallery_category', {'categorie': 'escaliers'}) }}"><img src="{{ asset('build/images/escaliers/escalier-9.jpg') }}" alt="Un escalier sur mesure en bois et métal" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'stairs'}) }}">
+            <img src="{{ asset('build/images/escaliers/escalier-9.jpg') }}"
+                 alt="Un escalier sur mesure en bois et métal"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card second-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'escaliers'}) }}"><img src="{{ asset('build/images/escaliers/escalier-13.jpg') }}" alt="Un escalier sur mesure en bois et métal" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'stairs'}) }}">
+            <img src="{{ asset('build/images/escaliers/escalier-13.jpg') }}"
+                 alt="Un escalier sur mesure en bois et métal"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card third-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'escaliers'}) }}"><img src="{{ asset('build/images/escaliers/escalier-14.jpg') }}" alt="Un escalier sur verre en bois et métal" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'stairs'}) }}">
+            <img src="{{ asset('build/images/escaliers/escalier-14.jpg') }}"
+                 alt="Un escalier sur verre en bois et métal"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card fourth-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'escaliers'}) }}"><img src="{{ asset('build/images/escaliers/escalier-20.jpg') }}" alt="Un escalier sur mesure en bois et métal" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'stairs'}) }}">
+            <img src="{{ asset('build/images/escaliers/escalier-20.jpg') }}"
+                 alt="Un escalier sur mesure en bois et métal"
+                 loading="lazy">
+            </a>
         </div>
       </div>
     </div>
 
     <div class="right-column">
       <!-- sixth accordion-->
-      <h2>Garde-corps</h2>
+      <h2 class="categories-title">Garde-corps</h2>
       <div class="accordion">
         <div class="card">
-          <a href="{{path('design_gallery_category', {'categorie': 'garde-corps'}) }}"><img src="{{ asset('build/images/garde-corps/gc-2.jpg') }}" alt="Un garde-corps sur mesure pour un escalier" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'railing'}) }}">
+            <img src="{{ asset('build/images/garde-corps/gc-2.jpg') }}"
+                 alt="Un garde-corps sur mesure pour un escalier"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card second-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'garde-corps'}) }}"><img src="{{ asset('build/images/garde-corps/gc-1.jpg') }}" alt="Un garde-corps sur mesure pour un escalier" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'railing'}) }}">
+            <img src="{{ asset('build/images/garde-corps/gc-1.jpg') }}"
+                 alt="Un garde-corps sur mesure pour un escalier"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card third-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'garde-corps'}) }}"><img src="{{ asset('build/images/garde-corps/gc-3.jpg') }}" alt="Un garde-corps sur mesure pour un escalier" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'railing'}) }}">
+            <img src="{{ asset('build/images/garde-corps/gc-3.jpg') }}"
+                 alt="Un garde-corps sur mesure pour un escalier"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card fourth-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'garde-corps'}) }}"><img src="{{ asset('build/images/garde-corps/gc-4.jpg') }}" alt="Un garde-corps sur mesure pour un escalier" loading="lazy"></a>
-        </div>
-      </div>
-    
-      <!-- seventh accordion-->
-      <h2>Trappes vitrées</h2>
-      <div class="accordion">
-        <div class="card">
-          <a href="{{path('design_gallery_category', {'categorie': 'trappes vitrées'}) }}"><img src="{{ asset('build/images/trappes-vitrees/tm-1.jpg') }}" alt="Un trappe vitrée en 3D" loading="lazy"></a>
-        </div>
-        <div class="card second-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'trappes vitrées'}) }}"><img src="{{ asset('build/images/trappes-vitrees/tm-3.jpg') }}" alt="Un trappe vitrée installée" loading="lazy"></a>
-        </div>
-        <div class="card third-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'trappes vitrées'}) }}"><img src="{{ asset('build/images/trappes-vitrees/tm-5.jpg') }}" alt="Un trappe vitrée installée" loading="lazy"></a>
-        </div>
-        <div class="card fourth-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'trappes vitrées'}) }}"><img src="{{ asset('build/images/trappes-vitrees/tm-9.jpg') }}" alt="Un trappe vitrée installée" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'railing'}) }}">
+            <img src="{{ asset('build/images/garde-corps/gc-4.jpg') }}"
+                 alt="Un garde-corps sur mesure pour un escalier"
+                 loading="lazy">
+          </a>
         </div>
       </div>
 
-      <!-- eigth accordion-->
-      <h2>Verrières</h2>
+      <!-- seventh accordion-->
+      <h2 class="categories-title">Trappes vitrées</h2>
       <div class="accordion">
         <div class="card">
-          <a href="{{path('design_gallery_category', {'categorie': 'verrières'}) }}"><img src="{{ asset('build/images/verrieres/verriere-1.jpg') }}" alt="Une grande verrière installée chez un client" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'glass trap'}) }}">
+            <img src="{{ asset('build/images/trappes-vitrees/tm-1.jpg') }}"
+                 alt="Un trappe vitrée en 3D"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card second-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'verrières'}) }}"><img src="{{ asset('build/images/verrieres/verriere-2.jpg') }}" alt="Une grande verrière installée chez un client" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'glass trap'}) }}">
+            <img src="{{ asset('build/images/trappes-vitrees/tm-3.jpg') }}"
+                 alt="Un trappe vitrée installée"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card third-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'verrières'}) }}"><img src="{{ asset('build/images/verrieres/verriere-3.jpg') }}" alt="Une grande verrière installée chez un client" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'glass trap'}) }}">
+            <img src="{{ asset('build/images/trappes-vitrees/tm-5.jpg') }}"
+                 alt="Un trappe vitrée installée"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card fourth-card">
-          <a href="{{path('design_gallery_category', {'categorie': 'verrières'}) }}"><img src="{{ asset('build/images/verrieres/verriere-4.jpg') }}" alt="Une grande verrière installée chez un client" loading="lazy"></a>
+          <a href="{{path('design_gallery_category', {'category': 'glass trap'}) }}">
+            <img src="{{ asset('build/images/trappes-vitrees/tm-9.jpg') }}"
+                 alt="Un trappe vitrée installée"
+                 loading="lazy">
+          </a>
+        </div>
+      </div>
+
+      <!-- eight accordion-->
+      <h2 class="categories-title">Verrières</h2>
+      <div class="accordion">
+        <div class="card">
+          <a href="{{path('design_gallery_category', {'category': 'canopy'}) }}">
+            <img src="{{ asset('build/images/verrieres/verriere-1.jpg') }}"
+                 alt="Une grande verrière installée chez un client"
+                 loading="lazy">
+          </a>
+        </div>
+        <div class="card second-card">
+          <a href="{{path('design_gallery_category', {'category': 'canopy'}) }}">
+            <img src="{{ asset('build/images/verrieres/verriere-2.jpg') }}"
+                 alt="Une grande verrière installée chez un client"
+                 loading="lazy">
+          </a>
+        </div>
+        <div class="card third-card">
+          <a href="{{path('design_gallery_category', {'category': 'canopy'}) }}">
+            <img src="{{ asset('build/images/verrieres/verriere-3.jpg') }}"
+                 alt="Une grande verrière installée chez un client"
+                 loading="lazy">
+          </a>
+        </div>
+        <div class="card fourth-card">
+          <a href="{{path('design_gallery_category', {'category': 'canopy'}) }}">
+            <img src="{{ asset('build/images/verrieres/verriere-4.jpg') }}"
+                 alt="Une grande verrière installée chez un client"
+                 loading="lazy">
+          </a>
         </div>
       </div>
 
       <!-- ninth accordion-->
-      <h2>Passages secrets</h2>
+      <h2 class="categories-title">Passages secrets</h2>
       <div class="accordion">
         <div class="card">
-          <a href="{{path('passage_index', {'categorie': 'passages secrets'}) }}"><img src="{{ asset('build/images/passages-secrets/ps-2.jpg') }}" alt="Un rendu en 3D d'une bibliothèque avec un passage secret" loading="lazy"></a>
+          <a href="{{path('passage_index', {'category': 'secret passage'}) }}">
+            <img src="{{ asset('build/images/passages-secrets/ps-2.jpg') }}"
+                 alt="Un rendu en 3D d'une bibliothèque avec un passage secret"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card second-card">
-          <a href="{{path('passage_index', {'categorie': 'passages secrets'}) }}"><img src="{{ asset('build/images/passages-secrets/ps-6.jpg') }}" alt="Un rendu en 3D d'une bibliothèque avec un passage secret" loading="lazy"></a>
+          <a href="{{path('passage_index', {'category': 'secret passage'}) }}">
+            <img src="{{ asset('build/images/passages-secrets/ps-6.jpg') }}"
+                 alt="Un rendu en 3D d'une bibliothèque avec un passage secret"
+                 loading="lazy"
+            ></a>
         </div>
         <div class="card third-card">
-          <a href="{{path('passage_index', {'categorie': 'passages secrets'}) }}"><img src="{{ asset('build/images/passages-secrets/ps-7.jpg') }}" alt="Un rendu 3D d'un miroir avec un compartiment secret" loading="lazy"></a>
+          <a href="{{path('passage_index', {'category': 'secret passage'}) }}">
+            <img src="{{ asset('build/images/passages-secrets/ps-7.jpg') }}"
+                 alt="Un rendu 3D d'un miroir avec un compartiment secret"
+                 loading="lazy">
+          </a>
         </div>
         <div class="card fourth-card">
-          <a href="{{path('passage_index', {'categorie': 'passages secrets'}) }}"><img src="{{ asset('build/images/passages-secrets/ps-8.jpg') }}" alt="Un rendu 3D d'un miroir avec un compartiment secret" loading="lazy"></a>
+          <a href="{{path('passage_index', {'category': 'secret passage'}) }}">
+            <img src="{{ asset('build/images/passages-secrets/ps-8.jpg') }}"
+                 alt="Un rendu 3D d'un miroir avec un compartiment secret"
+                 loading="lazy">
+          </a>
         </div>
       </div>
     </div>

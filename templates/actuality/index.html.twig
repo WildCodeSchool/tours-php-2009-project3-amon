@@ -9,42 +9,33 @@
 
 {% block body %}
 <section class="actualityContainer">
-	<h1 id="gallery-title">Les Actualités</h1>
-	{% for article in articles %}
-		<div class="article-button-container">
-			{% if app.user %}
-				<form method="post" action="{{ path('actuality_edit', {'id': article.id}) }}">
-					<input type="hidden" name="_method" value="EDIT">
-					<input type="hidden" name="_token" value="{{ csrf_token('edit' ~ article.id) }}">
-					<button class="edit-article-button"></button>
-				</form>
+	<h1 class="main-title">Les Actualités</h1>
+	<hr class="custom-hr">
+	{% for article in news %}
+		{% if app.user %}
+			<div class="article-button-container">
+				{{ include('form/_editArticle.html.twig') }}
 				{{ include('form/_deleteArticle.html.twig') }}
-			{% endif %}
-		</div>
-		<div class="article-date">
-			<p class="date">{{ article.date|date("d/m/Y") }}</p>
-		</div>
+			</div>
+		{% endif %}
 		<div class="article-container">
-			<div class="article-content">
-				<div class="image-grid">
-					{% for image in article.image %}
-						<div class="article-image">
-							<a href="{{ vich_uploader_asset(image, 'urlFile') }}">
-              				<img class="actuality-img" src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.texteAlternatif }}" loading="lazy">
-              				</a>
-						</div>
-					{% endfor %}
-				</div>
-				<div class="article-text">
-					<h1 class="article-title">{{ article.titre|capitalize }}</h1>
-					<p class="article-description">{{ article.description }}</p>
-				</div>
+			<div class="images-container">
+				{% for image in article.images %}
+					<a class="article-image" href="{{ vich_uploader_asset(image, 'urlFile') }}">
+						<img class="actuality-img" src="{{ vich_uploader_asset(image, 'urlFile') }}" alt="{{ image.alternativeText }}" loading="lazy">
+					</a>
+				{% endfor %}
+			</div>
+			<div class="article-text-container">
+				<h1 class="article-title">{{ article.title|capitalize }}</h1>
+				<p>- {{ article.date|date("d/m/Y") }} -</p>
+				<p class="article-description">{{ article.content|raw }}</p>
 			</div>
 		</div>
 	{% endfor %}
 </section>
 {% endblock %}
-	
+
 {% block javascripts %}
 {{ parent() }}
 {{ encore_entry_script_tags('actuality') }}

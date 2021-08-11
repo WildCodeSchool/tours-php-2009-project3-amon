@@ -1,0 +1,66 @@
+:root {
+    --body-bg: rgba(0, 0, 0, 0.247);
+    --text-color: white;
+    --text-color-light: lightgray;
+}
+
+body {
+    background-image: url("../images/background-blue.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed ;
+    background-size: cover;
+}
+
+@media screen and (max-width:1025px) {
+    .main-sidebar {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        margin-top: calc(2em + 20px) ;
+    }
+    #navigation-toggler {
+        color: var(--text-color);
+        border: 1px solid var(--text-color);
+        border-radius: 3px;
+        width: 1.75em;
+        text-align: center;
+    }
+    .content {
+        width: 100%;
+    }
+    .content-header {
+        width: 100%;
+    }
+}
+
+.menu-item:not(.active) > a{
+    color: white !important;
+}
+
+.title {
+    color: white;
+    padding-left: 2%;
+}
+
+.btn-primary:hover {
+    color: var(--text-color-dark);
+    background-color: #a0abe3;
+}
+
+.btn-secondary {
+    color: var(--text-color-dark);
+}
+
+.btn-secondary:hover {
+    background-color: #254b70;
+    color: white;
+}
+
+.form-group label, legend {
+    color: var(--text-color-dark) !important;
+}
+
+.actions a {
+    display: inline-block;
+    width: 100%;
+    margin-left: 0 !important;
+    text-align: center;
+}

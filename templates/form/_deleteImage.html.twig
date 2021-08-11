@@ -1,5 +1,7 @@
-<form method="post" action="{{path('design_gallery_delete', {'id': image.id}) }}" onsubmit="return confirm('Voulez vous supprimer cette image ?');">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ image.id) }}">
-    <button class="delete-button"></button>
+{% set url = ea_url()
+    .setController('App\\Controller\\Admin\\ImageCrudController')
+    .setAction('customDelete')
+    .setEntityId(image.id) %}
+<form method="post" action="{{ url }}" onsubmit="return confirm('Voulez vous supprimer cette image ?');">
+    <button id="delete-button" class="action-button"></button>
 </form>

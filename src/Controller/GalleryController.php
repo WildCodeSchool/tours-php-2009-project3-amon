@@ -17,18 +17,26 @@ use Knp\Component\Pager\PaginatorInterface;
 
 class GalleryController extends AbstractController
 {
+    private $categories = [
+        'outdoor layout' => 'Aménagement Extérieur',
+        'privacy screen and sun visor' => 'Brise-vue et Pare-soleil',
+        'decoration' => 'Décoration',
+        'stairs' => 'Escaliers',
+        'railing' => 'Garde-corps',
+        'glass trap' => 'Trappes vitrées',
+        'canopy' => 'Verrières',
+        'mirror' => 'Miroirs',
+        'library' => 'Bibliothèque',
+        'other' => 'Autre',
+        ];
+
     /**
      * @Route("/article/{image}", name="article_by_image_id")
      */
     public function showArticle(Image $image): Response
     {
-        $articles = $image->getArticles();
-        foreach ($articles as $article) {
-            if ($article->getSection() === "Galerie") {
-                return new JsonResponse(['data' => $article->getArray()]);
-            }
-        }
-        return new JsonResponse(['data' => $image]);
+        $article = $image->getArticle();
+        return new JsonResponse(['data' => $article->getArray()]);
     }
 
     /**
@@ -40,8 +48,8 @@ class GalleryController extends AbstractController
         PaginatorInterface $paginator
     ): Response {
         $data = $imageRepository->findBy(
-            ['categorie' => ['aménagement extérieur', 'brise-vue et pare-soleil', 'décoration', 'escaliers',
-            'garde-corps', 'passages secrets', 'trappes vitrées', 'verrières']],
+            ['category' => ['outdoor layout', 'privacy screen and sun visor', 'decoration', 'stairs',
+            'railing', 'glass trap', 'canopy']],
             ['id' => 'DESC'],
         );
         $images = $paginator->paginate(
@@ -51,34 +59,40 @@ class GalleryController extends AbstractController
         );
         return $this->render(
             'gallery/design.html.twig',
-            ['images' => $images, 'categorie' => 'Toutes les catégories'],
+            ['images' => $images, 'category' => 'all categories', ],
         );
     }
 
+
     /**
-     * @Route("/design-galerie/{categorie}", name="design_gallery_category")
+     * @Route("/design-galerie/{category}", name="design_gallery_category")
      */
-    public function showImagesByCategorie(
+    public function showImagesByCategory(
         Request $request,
         PaginatorInterface $paginator,
-        string $categorie,
+        string $category,
         ImageRepository $imageRepository
     ): Response {
         $images = [];
+        $categories = [
+            'outdoor layout',
+            'privacy screen and sun visor',
+            'decoration',
+            'stairs',
+            'railing',
+            'glass trap',
+            'canopy',
+        ];
+        if (!in_array($category, $categories)) {
+            return $this->redirectToRoute('design_gallery');
+        }
         $allImages = $imageRepository->findBy(
-            ['categorie' => $categorie],
+            ['category' => $category],
             ['id' => 'DESC']
         );
-
         foreach ($allImages as $image) {
-            $articles = $image->getArticles();
-            if (!empty($articles[0])) {
-                foreach ($articles as $article) {
-                    if ($article->getSection() != 'Actualités') {
-                        $images[] = $image;
-                    };
-                };
-            } else {
+            $article = $image->getArticle();
+            if (!empty($article)) {
                 $images[] = $image;
             }
         }
@@ -89,22 +103,14 @@ class GalleryController extends AbstractController
             15
         );
         if (!empty($data)) {
-            return $this->render('gallery/design.html.twig', ['images' => $images, 'categorie' => $categorie]);
+            return $this->render('gallery/design.html.twig', ['images' => $images, 'category' => $category]);
         } else {
+            $this->addFlash(
+                'empty_alert',
+                'Désolé aucune image n\'est actuellement disponible pour la catégorie ' . $this->categories[$category],
+            );
             return $this->redirectToRoute('design_gallery');
         }
-    }
-
-    /**
-     * @Route("/design-galerie/{id}/delete", name="design_gallery_delete", methods="DELETE")
-     */
-    public function deleteImage(Request $request, Image $image, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $image->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($image);
-            $entityManager->flush();
-        }
-        return $this->redirectToRoute('design_gallery_category', array('categorie' => $image->getCategorie()));
     }
 
     /**
@@ -116,7 +122,7 @@ class GalleryController extends AbstractController
         PaginatorInterface $paginator
     ): Response {
         $data = $imageRepository->findBy(
-            ['categorie' => ['miroirs', 'bibliothèques']]
+            ['category' => ['mirror', 'library']]
         );
 
         $images = $paginator->paginate(
@@ -126,34 +132,37 @@ class GalleryController extends AbstractController
         );
         return $this->render(
             'gallery/passage.html.twig',
-            ['images' => $images, 'categorie' => 'Tous les passages secrets']
+            ['images' => $images, 'category' => 'all categories']
         );
     }
 
     /**
-     * @Route("/passage-galerie/{categorie}", name="passage_gallery_category")
+     * @Route("/passage-galerie/{category}", name="passage_gallery_category")
      */
-    public function passageImagesByCategorie(
-        string $categorie,
+    public function passageImagesByCategory(
+        string $category,
         ImageRepository $imageRepository,
         Request $request,
         PaginatorInterface $paginator
     ): Response {
         $images = [];
+        $categories = [
+            'mirror',
+            'library',
+        ];
+        if (!in_array($category, $categories)) {
+            return $this->redirectToRoute('passage_gallery');
+        }
         $allImages = $imageRepository->findBy(
-            ['categorie' => $categorie],
+            ['category' => $category],
             ['id' => 'DESC']
         );
         foreach ($allImages as $image) {
-            $articles = $image->getArticles();
-            if (!empty($articles[0])) {
-                foreach ($articles as $article) {
-                    if ($article->getSection() != 'Actualités') {
-                        $images[] = $image;
-                    };
+            $article = $image->getArticle();
+            if (!empty($article)) {
+                if ($image->getCategory() !== 'other') {
+                    $images[] = $image;
                 };
-            } else {
-                $images[] = $image;
             }
         }
         $data = $images;
@@ -163,33 +172,13 @@ class GalleryController extends AbstractController
             15
         );
         if (!empty($data)) {
-            return $this->render('gallery/passage.html.twig', ['images' => $images, 'categorie' => $categorie]);
+            return $this->render('gallery/passage.html.twig', ['images' => $images, 'category' => $category]);
         } else {
+            $this->addFlash(
+                'empty_alert',
+                'Désolé aucune image n\'est actuellement disponible pour la catégorie ' . $this->categories[$category],
+            );
             return $this->redirectToRoute('passage_gallery');
         }
-    }
-
-    /**
-     * @Route("/passage-galerie/{id}/delete", name="passage_gallery_delete", methods="DELETE")
-     */
-    public function deletePassageImage(Request $request, Image $image, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $image->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($image);
-            $entityManager->flush();
-        }
-        return $this->redirectToRoute('passage_gallery_category', array('categorie' => $image->getCategorie()));
-    }
-
-    /**
-     * @Route("/actualites/{id}/delete", name="actuality_delete", methods="DELETE")
-     */
-    public function deleteArticle(Request $request, Article $article, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($article);
-            $entityManager->flush();
-        }
-        return $this->redirectToRoute('actuality');
     }
 }

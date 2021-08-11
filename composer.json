@@ -2,7 +2,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=8.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "composer/package-versions-deprecated": "^1.11",
@@ -11,6 +11,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "easycorp/easyadmin-bundle": "^3.3",
         "knplabs/knp-paginator-bundle": "^5.4",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^5.1",
@@ -41,7 +42,8 @@
         "symfony/yaml": "5.1.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
-        "vich/uploader-bundle": "^1.16"
+        "vich/uploader-bundle": "^1.16",
+      "ext-json": "*"
     },
     "require-dev": {
         "phpmd/phpmd": "^2.9",
@@ -87,11 +89,11 @@
         "symfony/polyfill-php56": "*"
     },
     "scripts": {
-        "test": { 
+        "test": {
             "phpcs": "vendor/bin/phpcs",
             "PHPStant": "vendor/bin/phpstan analyse src --level max",
             "PHP Mess Detector": "vendor/bin/phpmd src text phpmd.xml",
-            "ESLint JS liter": "./node_modules/.bin/eslint assets/js",             
+            "ESLint JS liter": "./node_modules/.bin/eslint assets/js",
             "Sass-lint SASS/CSS linter": "./node_modules/.bin/sass-lint -c sass-linter.yml -v"
         },
         "auto-scripts": {

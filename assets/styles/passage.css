@@ -3,17 +3,17 @@
 /* -- Principal Title of the secret passage page -- */
 .passage-title {
     color: var(--main-color);
-    font-size: 2.5vw;
+    font-size: var(--title-fontsize);
     margin-bottom: 2%;
     text-align: center;
-    text-decoration: var(--main-color) underline;
 }
+
 .passage-intro {
-    margin: 3% 6% 8% 6%;
+    margin: 3% 3% 8%;
 }
 .intro{
-    font-size: 1.3vw;
-    text-align: justify;
+    font-size: var(--paragraph-fontsize);
+    text-align: center;
 }
 
 /* -- Sections Library, Mirror, Tailor-Made -- */
@@ -37,11 +37,10 @@
 /* -- Sections texts -- */
 .passage-subtitle{
     margin-bottom: 2%;
-    font-size: 1.8vw;
+    font-size: var(--title-fontsize);
     margin-top: -20px;
 }
-.tailor-made-passage-subtitle {
-    font-size: 1.8vw;
+.tailor-made-subtitle {
     margin-top: -20px;
     text-align: center;
     margin-bottom: 0;
@@ -54,15 +53,15 @@
     width: 35%;
     top: 9rem;
     margin: 0;
-    font-size: 1.2vw;
+    font-size: var(--paragraph-fontsize);
     text-align: justify;
 }
 .passage-subtitle::first-letter, .tailor-made-passage-subtitle::first-letter {
-    font-size: 1.5em;
+    font-size: var(--title-fontsize);
     color: var(--button-color);
 }
 .passage-description{
-    font-size: 1.2vw;
+    font-size: var(--paragraph-fontsize);
     text-align: justify;
 }
 
@@ -77,24 +76,26 @@
     width: 17vw;
     height: 12vw;
     margin-left: 5%;
-    margin-top: -10%;
+    margin-top: -5%;
     box-shadow: var(--shadow-color);
     z-index: 1;
 }
 .passage-miniature {
-    margin-top: -8%;
+    margin-top: -5%;
     margin-left: 45%;
     z-index: 2;
     display: grid;
     grid-gap: 1%;
     grid-template-columns: repeat(3, 1fr);
-    background-color: var(--main-color);
+    background:no-repeat center url("../images/silver-textured-background.jpeg");
+    background-size: cover;
     position: relative;
     padding: 1%;
     box-shadow: var(--shadow-color);
     transition: transform .5s;
     width: 50vw;
-    height: 12vw;
+    height: 14vw;
+
 }
 
 .images-miniature {
@@ -116,7 +117,7 @@
 .passage-miniature:hover, .passage-miniature2:hover {
     -ms-transform: scale(1.1); /* IE 9 */
     -webkit-transform: scale(1.1); /* Safari 3-8 */
-    transform: scale(1.1); 
+    transform: scale(1.1);
 }
 
 .tailor-made-image-big {
@@ -129,7 +130,7 @@
 }
 
 /* Title in miniature */
-.galery-title {
+.gallery-title {
     font-size: 3vw;
     position: absolute;
     z-index: 3;
@@ -143,13 +144,11 @@
 
 /* -- Responsive -- */
 @media screen and (min-width: 250px) and (max-width: 1200px) {
-
     .passage-title {
         margin-top: 2%;
-        font-size: 1.5em;
       }
-    .intro {
-        font-size: 1.1em;
+    .passage-subtitle{
+        text-align: center;
     }
     .library, .mirror, .tailor-made{
         display: block;
@@ -158,18 +157,13 @@
     .images-passage, .images-passage1 {
         display: none;
     }
-    .passage-subtitle {
-        font-size: 1.3em;
-    }
-    .passage-description {
-        font-size: 1.1em;
-    }
-    .galery-title {
+
+    .gallery-title {
         font-size: 2em;
     }
     .passage-miniature {
         width: 65vw;
-        height: 15vw;
+        height: 18vw;
         margin-left: 9%;
         margin-top: 5%;
     }
@@ -181,16 +175,13 @@
     .tailor-made-description {
         top: 5rem;
         margin: 0;
-        font-size: 1.1em;
         text-align: justify;
-    }
-    .tailor-made-passage-subtitle {
-        font-size: 1.3rem;
     }
 }
 
 @media screen and (max-width: 900px) {
-    .tailor-made-passage-subtitle{
+
+    .tailor-made-subtitle{
         position: unset;
         margin-bottom: 2%;
         margin-top: -20px;
@@ -199,7 +190,6 @@
         position: unset;
         width: 100%;
         margin: 0;
-        font-size: 1.1em;
         text-align: justify;
     }
     .tailor-made-image-big {
@@ -216,20 +206,10 @@
 @media screen and (max-width: 500px) {
     .passage-title {
          margin-top: 5%;
-        font-size: 1.5em;
-    }
-    .intro {
-        font-size: 1em;
-    }
-    .passage-subtitle {
-        font-size: 1.1em;
-    }
-    .passage-description {
-        font-size: 1em;
     }
     .passage-miniature {
         width: 80vw;
-        height: 20vw;
+        height: 22vw;
         margin-left: 0;
     }
 }

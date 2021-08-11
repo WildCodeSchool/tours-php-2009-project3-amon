@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="{{ asset('build/images/favicon.ico') }}" />
+    <link href='https://fonts.googleapis.com/css?family=Baskervville' rel='stylesheet'>
     <title>{% block title %}Amon Passage Secret{% endblock %}</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
@@ -13,9 +14,6 @@
     <header id="header">
         <nav class="navbar">
             <ul class="navbar_left">
-                {% if app.user %}
-                <li class="hyperlink form-button"><a href="{{ path('form') }}" id="form-redirect">Formulaire</a></li>
-                {% endif %}
                 <li class="actu">
                     <a class="hyperlink" href="{{path('actuality') }}">Actualités</a>
                 </li>
@@ -23,11 +21,11 @@
                     <img src="{{asset('build/images/vertical-line.png') }}" alt="">
                 </li>
                 <li class="design">
-                    <a class="hyperlink" href="{{path('design_index') }}">Design métallique</a> 
+                    <a class="hyperlink" href="{{path('design_index') }}">Design métallique</a>
                 </li>
             </ul>
             <div class="logo-navbar">
-                <a href="{{path('home') }}"><img src="{{ asset('build/images/logo-navbar.png') }}" alt="Le logo de la société Amon" width="100%" title="Aller à l'accueil"></a> 
+                <a href="{{path('home') }}"><img src="{{ asset('build/images/logo-navbar.png') }}" alt="Le logo de la société Amon" width="100%" title="Aller à l'accueil"></a>
             </div>
             <ul class="navbar_right">
                 <li class="passages">
@@ -37,23 +35,26 @@
                     <img src="{{asset('build/images/vertical-line.png') }}" alt="">
                 </li>
                 <li class="contact">
-                    <a class="hyperlink" href="{{asset('home/contact') }}">Contact</a>
+                    <a class="hyperlink" href="{{path('contact') }}">Contact</a>
                 </li>
             </ul>
-            {% if app.user %}
-                <div class="mb-3">
-                    <a class="deconnection-link" href="{{ path('app_logout') }}">Déconnexion</a>
-                </div>
-        {% endif %}
         </nav>
     </header>
     <div class="content">
         {% block body %}{% endblock %}
     </div>
-    <footer class="footer">
-            <p>©2021-2022 Amon-creation.fr - Tous droits réservés</p>
-            <p><a href="{{path('legal_notice') }}">Mentions légales</a></p>
-            <p class="login-button"><a href="{{path ('app_login') }}"><img src="{{ asset('build/images/padlock.png') }}" alt="Cadenas pour login"></a></p>
+    <footer>
+        <p>©2021-2022 Amon-creation.fr - Tous droits réservés</p>
+        <p><a href="{{path('legal_notice') }}">Mentions légales</a></p>
+        <a class="footer-icons-container" href="{{path ('admin') }}">
+            <img class="footer-icon" src="{{ asset('build/images/ankh-svgrepo-com.svg') }}"
+                 alt="Icone représentant un ankh pour accéder à l'espace administrateur">
+        </a>
+        {% if app.user %}
+            <a class="footer-icons-container" href="{{ path('app_logout') }}">
+                <img class="footer-icon" src="{{ asset('build/images/se-deconnecter.svg') }}" alt="Logo de déconnexion">
+            </a>
+        {% endif %}
     </footer>
 
 {% block javascripts %}

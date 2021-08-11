@@ -15,8 +15,8 @@
 
 .contact_infos {
     text-align: center;
-    font-size: 1.25rem;
-    line-height: 1.5;
+    font-size: var(--paragraph-fontsize);
+    line-height: 1.4;
 }
 
 .contact_infos a {
@@ -24,17 +24,13 @@
     color: var(--main-color);
 }
 
-.logo-navbar {
-    visibility: hidden;
-}
-
 .logos {
     text-align: center;
 }
 
 .logos img {
-    width: 10vh;
-    margin: 2% 4%;
+    width: 8vh;
+    margin: 1% 4%;
 }
 
 .logo-reseau {
@@ -57,17 +53,13 @@
     .image img {
         width: 25vh;
     }
-    
-    .contact_infos {
-        font-size: 1rem;
-        line-height: 1;
-    }
 
-    .contact_infos p {
-        margin: 2%;
+    .contact_infos {
+        margin: 4% 1%;
+        line-height: 1.5;
     }
     .logos img {
-        width: 10vh;
+        width: 5vh;
     }
 }
 

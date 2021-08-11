@@ -17,7 +17,7 @@ class HomeController extends AbstractController
     }
 
         /**
-     * @Route("home/contact", name="contact")
+     * @Route("/contact", name="contact")
      */
     public function contact(): Response
     {
@@ -25,7 +25,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("home/mentions-legales", name="legal_notice")
+     * @Route("/mentions-legales", name="legal_notice")
      */
     public function legalNotice(): Response
     {

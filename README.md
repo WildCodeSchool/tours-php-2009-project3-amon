@@ -28,11 +28,12 @@ It's symfony website-skeleton project with some additional tools to validate cod
 ### Install
 
 1. Clone this project
-2. Run `composer install`
-3. Run `yarn install`
-4. Run `yarn encore dev` to build assets
-5. Import the database by running php/bin console do:mi:mi
-6. Modify `.env` to connect to the database
+2. Run `composer update`
+3. Run `composer install`
+4. Run `yarn install`
+5. Run `yarn encore dev` to build assets
+6. Import the database by running php/bin console do:mi:mi
+7. Modify `.env` to connect to the database
 
 ### Working
 

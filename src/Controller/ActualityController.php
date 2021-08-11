@@ -11,7 +11,6 @@ use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\HttpFoundation\Request;
-use App\Form\ArticleFormType;
 
 class ActualityController extends AbstractController
 {
@@ -20,45 +19,10 @@ class ActualityController extends AbstractController
      */
     public function showArticles(ArticleRepository $articleRepository): Response
     {
-        $articles = $articleRepository->findBy(
-            ["section" => 'Actualites'],
+        $news = $articleRepository->findBy(
+            ['isNews' => true],
             ['date' => 'DESC'],
         );
-        return $this->render('actuality/index.html.twig', ['articles' => $articles]);
-    }
-
-    /**
-     * Returning the 3 last articles posted, for the carousel in "Design métallique"
-     * @return object[]
-     */
-    public function showCarouselArticles(ArticleRepository $articleRepository): array
-    {
-        $articles = $articleRepository->findby(
-            ['section' => 'Actualites'],
-            ['date' => 'DESC'],
-            3,
-            0,
-        );
-        return $articles;
-    }
-
-    /**
-     * Editing an article, but can not delete image for now, or it goes out of the db too.
-     * @Route("/actualites/{id}/edit", name="actuality_edit")
-     */
-    public function editArticles(Request $request, Article $article, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(ArticleFormType::class, $article);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('actuality');
-        }
-
-        return $this->render('actuality/edit.html.twig', [
-            'article' => $article,
-            'form' => $form->createView(),
-        ]);
+        return $this->render('actuality/index.html.twig', ['news' => $news]);
     }
 }
